@@ -37,8 +37,8 @@
       img[style*="width:60px"][style*="height:60px"]{width:44px!important;height:44px!important;}
       #service-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;}
       #service-grid > div{width:100%!important;}
-      image-slot#about-exterior{height:220px!important;}
-      img[src*="valueup-before.png"], image-slot#valueup-before, img[src*="living-room.png"]{width:100%!important;max-width:260px!important;height:170px!important;}
+      img#about-exterior{height:220px!important;}
+      img[src*="valueup-before.png"], img#valueup-before, img[src*="living-room.png"]{width:100%!important;max-width:260px!important;height:170px!important;}
       div[ref]{height:220px!important;}
       section a[style*="border-radius:14px"]{display:block!important;width:100%!important;max-width:320px!important;margin:0 auto!important;}
       section a[style*="border-radius:14px"] img{width:100%!important;}
@@ -127,7 +127,7 @@
   <!-- HERO -->
   <section style="position:relative;padding:0 0 100px;overflow:visible;">
     <div style="position:relative;left:50%;margin-left:-50vw;width:100vw;min-height:620px;display:flex;align-items:center;">
-      <image-slot id="hero-arcade" mask="polygon(0% 0%,100% 0%,100% 85%,95% 80.95%,90% 80.24%,85% 83.46%,80% 87.94%,75% 90%,70% 87.94%,65% 83.46%,60% 80.24%,55% 80.95%,50% 85%,45% 89.05%,40% 89.76%,35% 86.54%,30% 82.06%,25% 80%,20% 82.06%,15% 86.54%,10% 89.76%,5% 89.05%,0% 85%)" placeholder="六角橋商店街のアーケード写真をドロップ" style="position:absolute;inset:0;width:100%;height:100%;"></image-slot>
+      <div id="hero-arcade" style="position:absolute;inset:0;width:100%;height:100%;background-image:url('./assets/hero-arcade.png');background-size:cover;background-position:center;clip-path:polygon(0% 0%,100% 0%,100% 85%,95% 80.95%,90% 80.24%,85% 83.46%,80% 87.94%,75% 90%,70% 87.94%,65% 83.46%,60% 80.24%,55% 80.95%,50% 85%,45% 89.05%,40% 89.76%,35% 86.54%,30% 82.06%,25% 80%,20% 82.06%,15% 86.54%,10% 89.76%,5% 89.05%,0% 85%);"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,35,60,0.08) 65%, rgba(20,35,60,0.16) 100%);"></div>
       <img src="assets/consultation.png" style="position:absolute;bottom:64px;right:80px;width:220px;height:150px;object-fit:cover;border-radius:24px;border:6px solid #fff;box-shadow:0 20px 40px -12px rgba(27,36,64,0.3);z-index:3;transform:rotate(-2.5deg);" />
       <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 48px;width:100%;">
@@ -157,19 +157,61 @@
     <h2 style="font-size:32px;font-weight:900;margin:0 0 12px;">サービス紹介</h2>
     <p style="font-size:15px;color:#5B647A;margin:0 0 48px;">不動産に関するあらゆるご相談に、ワンストップで対応します。</p>
     <div id="service-grid" style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
-      <sc-for list="{{ services }}" as="svc" hint-placeholder-count="5">
-        <div style="width:200px;position:relative;background:{{ svc.tint }};border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
-          <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:{{ svc.accent }};opacity:0.12;"></div>
-          <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:{{ svc.accent }};opacity:0.35;"></div>
-          <sc-if value="{{ svc.badge }}"><div style="position:absolute;top:16px;right:16px;background:#FF7A59;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;z-index:2;">{{ svc.badge }}</div></sc-if>
-          <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
-            <img src="{{ svc.photoSrc }}" style="width:100%;height:100%;object-fit:cover;" />
-            <img src="{{ svc.iconSrc }}" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
-          </div>
-          <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">{{ svc.name }}</div>
-          <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">{{ svc.desc }}</div>
+      <div style="width:200px;position:relative;background:#F2F6FF;border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
+        <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:#3D5AFE;opacity:0.12;"></div>
+        <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:#3D5AFE;opacity:0.35;"></div>
+        <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
+          <img src="assets/house-exterior.png" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="assets/svc-sale.png" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
         </div>
-      </sc-for>
+        <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">不動産売買仲介</div>
+        <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">戸建て・マンション・土地の売却・購入をサポート</div>
+      </div>
+
+      <div style="width:200px;position:relative;background:#F0FAF6;border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
+        <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:#1FAE7A;opacity:0.12;"></div>
+        <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:#1FAE7A;opacity:0.35;"></div>
+        <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
+          <img src="assets/living-room.png" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="assets/svc-rent.png" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">不動産賃貸仲介</div>
+        <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">賃貸物件のご紹介からご契約までサポート</div>
+      </div>
+
+      <div style="width:200px;position:relative;background:#F5F1FF;border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
+        <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:#7C5CFC;opacity:0.12;"></div>
+        <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:#7C5CFC;opacity:0.35;"></div>
+        <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
+          <img src="assets/apartment-exterior.png" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="assets/svc-manage.png" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">不動産賃貸管理</div>
+        <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">入居者募集から管理業務までオーナー様を支援</div>
+      </div>
+
+      <div style="width:200px;position:relative;background:#FFF6F0;border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
+        <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:#FF7A59;opacity:0.12;"></div>
+        <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:#FF7A59;opacity:0.35;"></div>
+        <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
+          <img src="assets/documents.png" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="assets/svc-consult.png" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">相続対策・相談</div>
+        <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">相続不動産のご相談から最適な活用方法をご提案</div>
+      </div>
+
+      <div style="width:200px;position:relative;background:#FFF0F5;border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
+        <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:#FF5C93;opacity:0.12;"></div>
+        <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:#FF5C93;opacity:0.35;"></div>
+        <div style="position:absolute;top:16px;right:16px;background:#FF7A59;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;z-index:2;">NEW</div>
+        <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
+          <img src="assets/house-exterior.png" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="assets/svc-valueup.png" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">VALUE UP売却</div>
+        <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">AI×リフォームで、売却をプロデュース</div>
+      </div>
     </div>
   </section>
 
@@ -188,7 +230,7 @@
     <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:rgba(91,105,255,0.10);filter:blur(4px);border-radius:50%;pointer-events:none;"></div>
     <div style="position:absolute;bottom:-30px;left:-30px;width:140px;height:140px;background:rgba(44,200,165,0.10);filter:blur(6px);border-radius:50%;pointer-events:none;"></div>
     <div style="display:flex;gap:56px;align-items:center;flex-wrap:wrap;background:transparent;border-radius:32px;padding:48px;position:relative;z-index:1;">
-      <image-slot id="about-exterior" src="assets/about-exterior.jpeg" radius="24" placeholder="会社の外観写真をドロップ" style="flex:1 1 560px;min-width:320px;width:100%;max-width:680px;height:380px;box-shadow:0 20px 50px rgba(30,45,80,0.10);"></image-slot>
+      <img id="about-exterior" src="assets/about-exterior.jpeg" alt="会社の外観" style="flex:1 1 560px;min-width:320px;width:100%;max-width:680px;height:380px;object-fit:cover;border-radius:24px;box-shadow:0 20px 50px rgba(30,45,80,0.10);" />
       <div style="flex:1 1 440px;min-width:320px;">
         <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">ABOUT US</div>
         <h2 style="font-size:30px;font-weight:900;margin:0 0 20px;line-height:1.5;">地域に寄り添い、<br/>信頼されて25年。</h2>
@@ -225,7 +267,7 @@
       <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;" id="valueup-compare-row">
         <div style="text-align:center;">
           <div style="font-size:12px;font-weight:700;color:#5B647A;letter-spacing:0.1em;margin-bottom:8px;">BEFORE</div>
-          <image-slot id="valueup-before" src="assets/valueup-before.png" radius="20" placeholder="古い一戸建ての写真をドロップ" style="width:280px;height:190px;box-shadow:0 16px 32px -16px rgba(27,36,64,0.3);filter:sepia(0.5) grayscale(0.6) brightness(0.85) contrast(0.9);"></image-slot>
+          <img id="valueup-before" src="assets/valueup-before.png" alt="ビフォー写真" style="width:280px;height:190px;object-fit:cover;border-radius:20px;box-shadow:0 16px 32px -16px rgba(27,36,64,0.3);filter:sepia(0.5) grayscale(0.6) brightness(0.85) contrast(0.9);" />
           <div style="font-size:12px;color:#5B647A;margin-top:8px;">現況のままでは魅力が伝わりにくい</div>
         </div>
         <div style="width:48px;height:48px;border-radius:50%;background:#7C5CFC;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin:0 20px;box-shadow:0 12px 24px -8px rgba(124,92,252,0.5);" id="valueup-arrow">
