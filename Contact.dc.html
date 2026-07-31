@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+    body{margin:0;font-family:'Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased;}
+    a{color:#3D5AFE;text-decoration:none;}
+    a:hover{color:#2540C9;}
+    input,select,textarea{font-family:inherit;}
+    @media (max-width:768px){ header nav{display:none;} }
+    @media (max-width:480px){
+      body{overflow-x:hidden;}
+      header{padding:10px 16px!important;}
+      header img[alt="Housetec"]{height:30px!important;}
+      header > div{gap:6px!important;}
+      header a{font-size:11px!important;padding:8px 10px!important;white-space:nowrap!important;}
+      section{padding-left:20px!important;padding-right:20px!important;}
+      h1{font-size:24px!important;line-height:1.5!important;}
+      p{font-size:14px!important;line-height:1.8!important;}
+      form{gap:16px!important;}
+      input,select,textarea{font-size:16px!important;padding:13px 14px!important;}
+      label{font-size:12px!important;}
+      button[type="submit"]{width:100%!important;font-size:16px!important;padding:16px 20px!important;min-height:48px!important;}
+      section a[style*="border-radius:999px"]{display:block!important;width:100%!important;text-align:center!important;box-sizing:border-box!important;font-size:15px!important;padding:16px 20px!important;min-height:44px!important;}
+      footer a[style*="border-radius:999px"]{display:inline-block!important;width:auto!important;}
+      footer{padding:32px 20px 20px!important;}
+      footer > div{flex-direction:column!important;gap:28px!important;}
+    }
+  </style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;color:#1B2440;overflow:hidden;position:relative;min-height:100vh;">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:16px 48px;position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid #EEF0F7;">
+    <a href="Housetec LP.dc.html"><img src="assets/logo.png" alt="Housetec" style="height:44px;width:auto;object-fit:contain;" /></a>
+    <nav style="display:flex;align-items:center;gap:32px;">
+      <a href="Housetec LP.dc.html#service" style="font-size:14px;font-weight:500;color:#1B2440;">サービス</a>
+      <a href="Housetec LP.dc.html#flow" style="font-size:14px;font-weight:500;color:#1B2440;">売却の流れ</a>
+      <a href="Housetec LP.dc.html#achievement" style="font-size:14px;font-weight:500;color:#1B2440;">実績</a>
+      <a href="Housetec LP.dc.html#voice" style="font-size:14px;font-weight:500;color:#1B2440;">お客様の声</a>
+      <a href="Housetec LP.dc.html#about" style="font-size:14px;font-weight:500;color:#1B2440;">会社案内</a>
+    </nav>
+    <div style="display:flex;gap:10px;">
+      <a href="Assessment.dc.html" style="font-size:14px;font-weight:700;color:#3D5AFE;border:1.5px solid #3D5AFE;border-radius:999px;padding:10px 20px;white-space:nowrap;">無料査定</a>
+      <a href="Reservation.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:10px 20px;white-space:nowrap;">来店予約</a>
+    </div>
+  </header>
+
+  <section style="padding:64px 24px 100px;max-width:720px;margin:0 auto;">
+    <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:80px 20px;">
+        <div style="width:72px;height:72px;border-radius:50%;background:#EDF0FF;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px;color:#3D5AFE;">✓</div>
+        <h1 style="font-size:26px;font-weight:900;margin:0 0 12px;">送信ありがとうございました</h1>
+        <p style="font-size:15px;color:#5B647A;line-height:1.9;margin:0 0 32px;">担当者より2営業日以内にご連絡いたします。</p>
+        <a href="Housetec LP.dc.html" style="display:inline-block;font-size:15px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:14px 32px;">トップページへ戻る</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">CONTACT</div>
+        <h1 style="font-size:30px;font-weight:900;margin:0 0 12px;">お問い合わせ</h1>
+        <p style="font-size:15px;color:#5B647A;line-height:1.8;margin:0 0 36px;">ご質問・ご相談はこちらのフォームからお気軽にお問い合わせください。</p>
+        <form onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">お名前 <span style="color:#FF7A59;">必須</span></label>
+            <input type="text" required="true" value="{{ form.name }}" onChange="{{ onName }}" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;" placeholder="山田 太郎" />
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">電話番号</label>
+            <input type="tel" value="{{ form.phone }}" onChange="{{ onPhone }}" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;" placeholder="045-000-0000" />
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">メールアドレス <span style="color:#FF7A59;">必須</span></label>
+            <input type="email" required="true" value="{{ form.email }}" onChange="{{ onEmail }}" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;" placeholder="example@housetec.jp" />
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">お問い合わせ内容 <span style="color:#FF7A59;">必須</span></label>
+            <textarea required="true" value="{{ form.message }}" onChange="{{ onMessage }}" rows="6" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;resize:vertical;" placeholder="ご相談内容をご記入ください"></textarea>
+          </div>
+          <button type="submit" disabled="{{ submitting }}" style="margin-top:8px;font-size:16px;font-weight:700;color:#fff;background:#3D5AFE;border:none;border-radius:999px;padding:16px 32px;box-shadow:0 12px 24px -8px rgba(61,90,254,0.5);cursor:pointer;">{{ submitLabel }}</button>
+        </form>
+      </div>
+    </sc-if>
+  </section>
+
+  <footer style="background:#1B2440;color:#C6CCDE;padding:48px 48px 24px;">
+    <div style="display:flex;gap:48px;flex-wrap:wrap;justify-content:space-between;max-width:1280px;margin:0 auto 32px;">
+      <div style="flex:1 1 260px;min-width:220px;">
+        <a href="Housetec LP.dc.html"><img src="assets/logo.png" style="height:36px;filter:brightness(0) invert(1);margin-bottom:16px;" /></a>
+        <div style="font-size:13px;line-height:2;color:#9AA3BE;">有限会社ハウステック<br/>〒221-0802 神奈川県横浜市神奈川区六角橋1丁目19-1<br/>TEL. 045-430-3383<br/>営業時間 10:00〜19:30／定休日 水曜日</div>
+      </div>
+      <div style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+          <a href="Housetec LP.dc.html#about" style="color:#C6CCDE;">会社案内</a>
+          <a href="Housetec LP.dc.html#service" style="color:#C6CCDE;">サービス</a>
+          <a href="Housetec LP.dc.html#flow" style="color:#C6CCDE;">売却の流れ</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #33395C;padding-top:20px;text-align:center;font-size:12px;color:#7C87A8;">© Housetec. All Rights Reserved.</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+async function sendInquiry(kind, payload) {
+  // TODO: replace with real email service call, e.g.:
+  // await fetch('/api/send', { method:'POST', body: JSON.stringify({ kind, ...payload }) });
+  await new Promise(r => setTimeout(r, 500));
+  console.log('submit stub', kind, payload);
+}
+
+class Component extends DCLogic {
+  state = { submitting: false, submitted: false, form: { name:'', phone:'', email:'', message:'' } };
+  set = (key, val) => this.setState(s => ({ form: { ...s.form, [key]: val } }));
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    this.setState({ submitting: true });
+    await sendInquiry('contact', this.state.form);
+    this.setState({ submitting: false, submitted: true });
+  };
+  renderVals() {
+    const f = this.state.form;
+    return {
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      submitting: this.state.submitting,
+      submitLabel: this.state.submitting ? '送信中...' : '送信する',
+      form: f,
+      onName: e => this.set('name', e.target.value),
+      onPhone: e => this.set('phone', e.target.value),
+      onEmail: e => this.set('email', e.target.value),
+      onMessage: e => this.set('message', e.target.value),
+      handleSubmit: this.handleSubmit,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

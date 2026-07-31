@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+    body{margin:0;font-family:'Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased;}
+    a{color:#3D5AFE;text-decoration:none;}
+    a:hover{color:#2540C9;}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    #voice-row > div:nth-child(1){transform:rotate(-1deg);}
+    #voice-row > div:nth-child(3){transform:rotate(1deg);}
+    @media (max-width:768px){ header nav{display:none;} body{overflow-x:hidden;} }
+    @media (max-width:480px){
+      body{overflow-x:hidden;}
+      header{padding:10px 16px!important;}
+      header img[alt="Housetec"]{height:30px!important;}
+      header > div{gap:6px!important;}
+      header a{font-size:11px!important;padding:8px 10px!important;white-space:nowrap!important;}
+      section{padding-left:20px!important;padding-right:20px!important;}
+      h1{font-size:26px!important;line-height:1.5!important;}
+      h2{font-size:21px!important;line-height:1.5!important;}
+      p{font-size:14px!important;line-height:1.8!important;}
+      [data-comment-anchor="d3fef11205-div"]{min-height:520px!important;}
+      div[style*="background:#EDF0FF"][style*="border-radius:999px"]{font-size:11px!important;padding:5px 12px!important;}
+      img[src*="consultation.png"]{width:96px!important;height:68px!important;top:16px!important;right:16px!important;bottom:auto!important;border-width:3px!important;border-radius:16px!important;transform:rotate(3deg)!important;}
+      section div[style*="max-width:640px"]{max-width:100%!important;}
+      section a[style*="border-radius:999px"]{display:block!important;width:100%!important;text-align:center!important;box-sizing:border-box!important;font-size:15px!important;padding:16px 20px!important;min-height:44px!important;}
+      footer a[style*="border-radius:999px"]{display:inline-block!important;width:auto!important;}
+      div[style*="width:160px"][style*="height:160px"]{width:120px!important;height:120px!important;}
+      img[style*="width:60px"][style*="height:60px"]{width:44px!important;height:44px!important;}
+      #service-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;}
+      #service-grid > div{width:100%!important;}
+      image-slot#about-exterior{height:220px!important;}
+      img[src*="valueup-before.png"], image-slot#valueup-before, img[src*="living-room.png"]{width:100%!important;max-width:260px!important;height:170px!important;}
+      div[ref]{height:220px!important;}
+      section a[style*="border-radius:14px"]{display:block!important;width:100%!important;max-width:320px!important;margin:0 auto!important;}
+      section a[style*="border-radius:14px"] img{width:100%!important;}
+      footer{padding:32px 20px 20px!important;}
+      footer > div{flex-direction:column!important;gap:28px!important;}
+      #hero-glass div[style*="margin-bottom:20px"]{margin-bottom:14px!important;}
+      #hero-glass h1{margin-bottom:14px!important;}
+      #hero-glass p{margin-bottom:18px!important;}
+      #hero-glass > div[style*="gap:24px"]{margin-bottom:18px!important;gap:12px 20px!important;}
+      br#pn-break{display:inline!important;}
+      #hero-cta-row{display:none!important;}
+      div[style*="margin-top:20px"][style*="border-radius:20px"]{margin-top:0!important;}
+      #voice-row > div{transform:none!important;}
+      section[id="achievement"] div[style*="flex:1 1 140px"]{margin-top:0!important;}
+      #service-grid > div div[style*="font-size:12px"][style*="color:#5B647A"]{word-break:keep-all!important;overflow-wrap:break-word!important;}
+      #service-grid > div div[style*="font-size:15px"]{word-break:keep-all!important;}
+      #valueup-compare-row{flex-direction:column!important;}
+      #valueup-arrow{margin:16px auto!important;transform:rotate(90deg);}
+      section[id]{padding-top:22px!important;padding-bottom:22px!important;}
+      section[style*="padding:0 0 100px"]{padding-bottom:24px!important;}
+      section[style*="F3F0FF"]{padding-top:22px!important;padding-bottom:22px!important;margin-bottom:22px!important;}
+      div[style*="padding:0 48px 48px"]{padding:0 20px 14px!important;}
+      div[style*="padding:0 48px 48px"] > div{padding:16px 18px!important;}
+      div[style*="margin-bottom:36px"]{margin-bottom:14px!important;}
+      div[style*="margin-bottom:40px"]{margin-bottom:16px!important;}
+      div[style*="margin-bottom:44px"]{margin-bottom:16px!important;}
+      p[style*="margin:0 0 48px"]{margin-bottom:18px!important;}
+      #about > div{gap:20px!important;padding:22px!important;}
+      #valueup-card{padding:20px!important;}
+      #access > div{padding:20px!important;gap:20px!important;}
+    }
+    @media (max-width:768px){
+      #header-ctas{display:none!important;}
+      #menu-toggle{display:flex!important;}
+      #mobile-cta-bar{display:flex!important;position:fixed;bottom:0;left:0;right:0;z-index:90;box-shadow:0 -6px 16px -8px rgba(27,36,64,0.3);padding-bottom:env(safe-area-inset-bottom);}
+      #mobile-cta-bar a{padding:10px 0!important;}
+      body{padding-bottom:46px;}
+    }
+  </style>
+  <script src="./image-slot.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+</helmet>
+<div style="width:100%;background:#FFFFFF;color:#1B2440;overflow:hidden;position:relative;">
+
+  <!-- HEADER -->
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:16px 48px;position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid #EEF0F7;">
+    <a href="Housetec LP.dc.html"><img src="assets/logo.png" alt="Housetec" style="height:44px;width:auto;object-fit:contain;" /></a>
+    <nav style="display:flex;align-items:center;gap:32px;">
+      <a href="#service" style="font-size:14px;font-weight:500;color:#1B2440;">サービス</a>
+      <a href="#flow" style="font-size:14px;font-weight:500;color:#1B2440;">売却の流れ</a>
+      <a href="#achievement" style="font-size:14px;font-weight:500;color:#1B2440;">実績</a>
+      <a href="#voice" style="font-size:14px;font-weight:500;color:#1B2440;">お客様の声</a>
+      <a href="#about" style="font-size:14px;font-weight:500;color:#1B2440;">会社案内</a>
+      <a href="#faq" style="font-size:14px;font-weight:500;color:#1B2440;">よくある質問</a>
+    </nav>
+    <div id="header-ctas" style="display:flex;gap:10px;">
+      <a href="Contact.dc.html" style="font-size:14px;font-weight:700;color:#3D5AFE;border:1.5px solid #3D5AFE;border-radius:999px;padding:10px 20px;white-space:nowrap;">無料相談</a>
+      <a href="Reservation.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:10px 20px;white-space:nowrap;">来店予約</a>
+    </div>
+    <button id="menu-toggle" onClick="{{ toggleMenu }}" aria-label="メニューを開く" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:none;padding:0;cursor:pointer;">
+      <span style="display:block;width:22px;height:2px;background:#1B2440;margin:0 auto;"></span>
+      <span style="display:block;width:22px;height:2px;background:#1B2440;margin:0 auto;"></span>
+      <span style="display:block;width:22px;height:2px;background:#1B2440;margin:0 auto;"></span>
+    </button>
+  </header>
+
+  <div style="{{ mobileMenuStyle }}">
+    <a href="#service" onClick="{{ closeMenu }}" style="font-size:16px;font-weight:700;color:#1B2440;">サービス</a>
+    <a href="#flow" onClick="{{ closeMenu }}" style="font-size:16px;font-weight:700;color:#1B2440;">売却の流れ</a>
+    <a href="#achievement" onClick="{{ closeMenu }}" style="font-size:16px;font-weight:700;color:#1B2440;">実績</a>
+    <a href="#voice" onClick="{{ closeMenu }}" style="font-size:16px;font-weight:700;color:#1B2440;">お客様の声</a>
+    <a href="#about" onClick="{{ closeMenu }}" style="font-size:16px;font-weight:700;color:#1B2440;">会社案内</a>
+    <div style="height:1px;background:#EEF0F7;margin:8px 0;"></div>
+    <a href="Assessment.dc.html" style="display:block;text-align:center;font-size:16px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:14px;">無料査定を依頼する</a>
+    <a href="Reservation.dc.html" style="display:block;text-align:center;font-size:16px;font-weight:700;color:#3D5AFE;border:1.5px solid #3D5AFE;border-radius:999px;padding:14px;">来店予約をする</a>
+    <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ" style="display:block;text-align:center;font-size:16px;font-weight:700;color:#fff;background:#06C755;border-radius:999px;padding:14px;">LINEで相談する</a>
+  </div>
+
+  <div id="mobile-cta-bar" style="display:none;">
+    <a href="Assessment.dc.html" aria-label="無料査定を依頼する" style="flex:1;display:flex;align-items:center;justify-content:center;background:#3D5AFE;color:#fff;font-size:13px;font-weight:700;padding:14px 0;">無料査定</a>
+    <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEで相談する" style="flex:1;display:flex;align-items:center;justify-content:center;background:#06C755;color:#fff;font-size:13px;font-weight:700;padding:14px 0;">LINE相談</a>
+    <a href="Reservation.dc.html" aria-label="来店予約をする" style="flex:1;display:flex;align-items:center;justify-content:center;background:#1B2440;color:#fff;font-size:13px;font-weight:700;padding:14px 0;">来店予約</a>
+  </div>
+
+  <!-- HERO -->
+  <section style="position:relative;padding:0 0 100px;overflow:visible;">
+    <div style="position:relative;left:50%;margin-left:-50vw;width:100vw;min-height:620px;display:flex;align-items:center;">
+      <image-slot id="hero-arcade" mask="polygon(0% 0%,100% 0%,100% 85%,95% 80.95%,90% 80.24%,85% 83.46%,80% 87.94%,75% 90%,70% 87.94%,65% 83.46%,60% 80.24%,55% 80.95%,50% 85%,45% 89.05%,40% 89.76%,35% 86.54%,30% 82.06%,25% 80%,20% 82.06%,15% 86.54%,10% 89.76%,5% 89.05%,0% 85%)" placeholder="六角橋商店街のアーケード写真をドロップ" style="position:absolute;inset:0;width:100%;height:100%;"></image-slot>
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,35,60,0.08) 65%, rgba(20,35,60,0.16) 100%);"></div>
+      <img src="assets/consultation.png" style="position:absolute;bottom:64px;right:80px;width:220px;height:150px;object-fit:cover;border-radius:24px;border:6px solid #fff;box-shadow:0 20px 40px -12px rgba(27,36,64,0.3);z-index:3;transform:rotate(-2.5deg);" />
+      <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 48px;width:100%;">
+        <div style="max-width:600px;background:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:28px;padding:32px 24px;box-shadow:0 20px 50px -26px rgba(27,36,64,0.22);" id="hero-glass">
+          <div style="display:inline-block;font-size:13px;font-weight:700;color:#3D5AFE;background:#EDF0FF;padding:6px 16px;border-radius:999px;margin-bottom:20px;">神奈川区・六角橋エリアに根ざして25年</div>
+          <h1 style="font-size:44px;line-height:1.4;font-weight:900;margin:0 0 24px;letter-spacing:-0.01em;">六角橋の街と、<br/>あなたの<span style="color:#3D5AFE;">未来</span>を<br/>つなぐ<br id="pn-break" style="display:none;"/>パートナー。</h1>
+          <p style="font-size:16px;line-height:1.9;font-weight:500;color:#24324a;margin-top:28px;margin-bottom:32px;padding:0;">不動産の売却・購入・賃貸・管理・相続対策まで、<br/>地域を知り尽くした私たちにお任せください。</p>
+          <div style="display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;"><img src="assets/icon-local.png" style="width:28px;height:28px;object-fit:contain;" /><span style="font-size:13px;font-weight:500;color:#1B2440;">地域密着<br/>六角橋を知り尽くした<br/>不動産のプロ</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><img src="assets/icon-free.png" style="width:28px;height:28px;object-fit:contain;" /><span style="font-size:13px;font-weight:500;color:#1B2440;">相談無料<br/>安心の無料相談で<br/>しっかりサポート</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><img src="assets/icon-staff.png" style="width:28px;height:28px;object-fit:contain;" /><span style="font-size:13px;font-weight:500;color:#1B2440;">経験豊富なスタッフ<br/>豊富な知識と実績で<br/>しっかり査定</span></div>
+          </div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;" id="hero-cta-row">
+            <a href="Assessment.dc.html" style="font-size:16px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:16px 32px;box-shadow:0 12px 24px -8px rgba(61,90,254,0.5);">無料査定を依頼する →</a>
+            <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEで相談する" style="font-size:16px;font-weight:700;color:#fff;background:#06C755;border-radius:999px;padding:16px 32px;box-shadow:0 12px 24px -8px rgba(6,199,85,0.4);">LINEで相談する →</a>
+            <a href="Reservation.dc.html" style="font-size:16px;font-weight:700;color:#3D5AFE;background:#fff;border:1.5px solid #3D5AFE;border-radius:999px;padding:16px 32px;">来店予約をする →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE -->
+  <section id="service" style="padding:80px 48px;max-width:1280px;margin:0 auto;text-align:center;background:#FAFBFF;position:relative;">
+    <div style="position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#3D5AFE 0%,transparent 70%);opacity:0.06;pointer-events:none;z-index:0;"></div>
+    <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">SERVICE</div>
+    <h2 style="font-size:32px;font-weight:900;margin:0 0 12px;">サービス紹介</h2>
+    <p style="font-size:15px;color:#5B647A;margin:0 0 48px;">不動産に関するあらゆるご相談に、ワンストップで対応します。</p>
+    <div id="service-grid" style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+      <sc-for list="{{ services }}" as="svc" hint-placeholder-count="5">
+        <div style="width:200px;position:relative;background:{{ svc.tint }};border-radius:24px;padding:28px 16px 24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.14);box-sizing:border-box;overflow:hidden;">
+          <div style="position:absolute;top:-14px;left:-14px;width:44px;height:44px;border-radius:50%;background:{{ svc.accent }};opacity:0.12;"></div>
+          <div style="position:absolute;bottom:10px;right:14px;width:8px;height:8px;border-radius:50%;background:{{ svc.accent }};opacity:0.35;"></div>
+          <sc-if value="{{ svc.badge }}"><div style="position:absolute;top:16px;right:16px;background:#FF7A59;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;z-index:2;">{{ svc.badge }}</div></sc-if>
+          <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 16px;position:relative;box-shadow:0 12px 24px -12px rgba(27,36,64,0.3);border:3px solid #fff;">
+            <img src="{{ svc.photoSrc }}" style="width:100%;height:100%;object-fit:cover;" />
+            <img src="{{ svc.iconSrc }}" style="position:absolute;top:6px;left:6px;width:44px;height:44px;background:#fff;border-radius:50%;padding:2px;box-shadow:0 4px 10px rgba(0,0,0,0.15);" />
+          </div>
+          <div style="font-size:15px;font-weight:700;color:#1B2440;text-align:center;">{{ svc.name }}</div>
+          <div style="font-size:12px;color:#5B647A;margin-top:4px;text-align:center;">{{ svc.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 48px 48px;">
+    <div style="background:#F5F7FC;border-radius:20px;padding:28px 32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;">
+      <div style="font-size:14px;font-weight:700;color:#1B2440;">サービス内容についてのご相談はこちら</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="Assessment.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:12px 24px;">無料査定を依頼する →</a>
+        <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ" style="font-size:14px;font-weight:700;color:#fff;background:#06C755;border-radius:999px;padding:12px 24px;">LINEで相談する →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding:80px 48px;max-width:1280px;margin:0 auto;background:linear-gradient(135deg,#f4f7ff 0%,#ffffff 48%,#f2fbf8 100%);position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:rgba(91,105,255,0.10);filter:blur(4px);border-radius:50%;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-30px;left:-30px;width:140px;height:140px;background:rgba(44,200,165,0.10);filter:blur(6px);border-radius:50%;pointer-events:none;"></div>
+    <div style="display:flex;gap:56px;align-items:center;flex-wrap:wrap;background:transparent;border-radius:32px;padding:48px;position:relative;z-index:1;">
+      <image-slot id="about-exterior" src="assets/about-exterior.jpeg" radius="24" placeholder="会社の外観写真をドロップ" style="flex:1 1 560px;min-width:320px;width:100%;max-width:680px;height:380px;box-shadow:0 20px 50px rgba(30,45,80,0.10);"></image-slot>
+      <div style="flex:1 1 440px;min-width:320px;">
+        <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">ABOUT US</div>
+        <h2 style="font-size:30px;font-weight:900;margin:0 0 20px;line-height:1.5;">地域に寄り添い、<br/>信頼されて25年。</h2>
+        <p style="font-size:15px;line-height:2;color:#5B647A;margin:0 0 28px;">ハウステックは、神奈川区・六角橋エリアで25年以上、地域の皆さまとともに歩んでまいりました。地元の不動産事情に精通した強固なネットワークで、お客様一人ひとりに最適なご提案をいたします。</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:10px;background:#F0F3FF;border-radius:16px;padding:14px 18px;flex:1 1 150px;box-shadow:0 8px 20px -14px rgba(27,36,64,0.15);"><img src="assets/icon-local.png" style="width:26px;height:26px;" /><span style="font-size:12px;font-weight:700;color:#1B2440;">地域密着25年<br/><span style="font-weight:400;color:#5B647A;">六角橋エリア専門</span></span></div>
+          <div style="display:flex;align-items:center;gap:10px;background:#EFFAF5;border-radius:16px;padding:14px 18px;flex:1 1 150px;box-shadow:0 8px 20px -14px rgba(27,36,64,0.15);"><img src="assets/icon-speedy.png" style="width:26px;height:26px;" /><span style="font-size:12px;font-weight:700;color:#1B2440;">迅速・丁寧な対応<br/><span style="font-weight:400;color:#5B647A;">スピーディに対応</span></span></div>
+          <div style="display:flex;align-items:center;gap:10px;background:#F5F1FF;border-radius:16px;padding:14px 18px;flex:1 1 150px;box-shadow:0 8px 20px -14px rgba(27,36,64,0.15);"><img src="assets/icon-network.png" style="width:26px;height:26px;" /><span style="font-size:12px;font-weight:700;color:#1B2440;">多様なネットワーク<br/><span style="font-weight:400;color:#5B647A;">売買・購入もワンストップ</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 48px 48px;">
+    <div style="background:#F5F7FC;border-radius:20px;padding:28px 32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;">
+      <div style="font-size:14px;font-weight:700;color:#1B2440;">まずは無料査定・ご相談から</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="Assessment.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:12px 24px;">無料査定を依頼する →</a>
+        <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ" style="font-size:14px;font-weight:700;color:#fff;background:#06C755;border-radius:999px;padding:12px 24px;">LINEで相談する →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE UP -->
+  <section style="padding:64px 48px;max-width:1280px;margin:0 auto 80px;background:linear-gradient(135deg,#F3F0FF 0%,#EDF0FF 100%);border-radius:40px;position:relative;overflow:hidden;">
+    <img src="assets/blob-dots.png" style="position:absolute;top:-40px;right:-60px;width:280px;opacity:0.5;pointer-events:none;" />
+    <div style="text-align:center;margin-bottom:40px;position:relative;z-index:1;">
+      <div style="font-size:13px;font-weight:700;color:#7C5CFC;letter-spacing:0.1em;margin-bottom:8px;">NEW SERVICE</div>
+      <h2 style="font-size:30px;font-weight:900;margin:0 0 8px;color:#1B2440;">HOUSETEC <span style="color:#7C5CFC;">VALUE UP</span> 売却</h2>
+      <p style="font-size:15px;color:#5B647A;margin:0;">AI×リフォームで、売却をプロデュース。</p>
+    </div>
+    <div style="background:#fff;border-radius:28px;padding:36px;position:relative;z-index:1;margin-bottom:36px;box-shadow:0 24px 60px -30px rgba(27,36,64,0.25);" id="valueup-card">
+      <div style="display:inline-block;font-size:11px;font-weight:700;color:#7C5CFC;background:#F3F0FF;padding:5px 14px;border-radius:999px;margin:0 auto 20px;display:block;width:max-content;">AIが完成イメージを提案</div>
+      <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;" id="valueup-compare-row">
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:#5B647A;letter-spacing:0.1em;margin-bottom:8px;">BEFORE</div>
+          <image-slot id="valueup-before" src="assets/valueup-before.png" radius="20" placeholder="古い一戸建ての写真をドロップ" style="width:280px;height:190px;box-shadow:0 16px 32px -16px rgba(27,36,64,0.3);filter:sepia(0.5) grayscale(0.6) brightness(0.85) contrast(0.9);"></image-slot>
+          <div style="font-size:12px;color:#5B647A;margin-top:8px;">現況のままでは魅力が伝わりにくい</div>
+        </div>
+        <div style="width:48px;height:48px;border-radius:50%;background:#7C5CFC;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin:0 20px;box-shadow:0 12px 24px -8px rgba(124,92,252,0.5);" id="valueup-arrow">
+          <span style="color:#fff;font-size:20px;font-weight:900;">→</span>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:700;color:#7C5CFC;letter-spacing:0.1em;margin-bottom:8px;">AFTER（AI完成イメージ）</div>
+          <img src="assets/living-room.png" style="width:280px;height:190px;object-fit:cover;border-radius:20px;box-shadow:0 16px 32px -16px rgba(124,92,252,0.35);" />
+          <div style="font-size:12px;color:#5B647A;margin-top:8px;">リフォーム後の暮らしを具体的にイメージ</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:28px;position:relative;z-index:1;">
+      <a href="ValueUp.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#7C5CFC;border-radius:999px;padding:12px 28px;">サービス詳細を見る →</a>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+      <sc-for list="{{ valueupChips }}" as="chip" hint-placeholder-count="4">
+        <div style="background:#fff;border-radius:999px;padding:10px 20px;font-size:13px;font-weight:600;color:#1B2440;box-shadow:0 6px 16px -8px rgba(27,36,64,0.2);">{{ chip }}</div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENT -->
+  <section id="achievement" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F5F8FC;position:relative;">
+    <div style="position:absolute;bottom:-50px;right:10%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#7C5CFC 0%,transparent 70%);opacity:0.07;pointer-events:none;z-index:0;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">ACHIEVEMENT</div>
+        <h2 style="font-size:28px;font-weight:900;margin:0;">六角橋エリアの実績</h2>
+      </div>
+      <a href="#achievement" style="font-size:14px;font-weight:700;">詳しく見る →</a>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:stretch;">
+      <div style="flex:2 1 480px;display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="flex:1 1 140px;background:#F2F6FF;border-radius:20px;padding:24px 16px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);position:relative;overflow:hidden;margin-top:0;">
+          <div style="position:absolute;top:-20px;right:-20px;width:60px;height:60px;border-radius:50%;background:#3D5AFE;opacity:0.08;"></div>
+          <div style="font-size:12px;font-weight:700;color:#5B647A;margin-bottom:8px;position:relative;">無料査定ご依頼件数</div>
+          <div style="display:grid;">
+            <div style="grid-area:1/1;font-size:44px;font-weight:900;color:#3D5AFE;opacity:0.07;line-height:1;align-self:center;justify-self:center;">1250</div>
+            <div style="grid-area:1/1;font-size:32px;font-weight:900;color:#3D5AFE;line-height:1;align-self:center;">1,250<span style="font-size:13px;font-weight:700;">件以上</span></div>
+          </div>
+          <div style="font-size:11px;color:#5B647A;margin-top:6px;position:relative;">※2023年度実績</div>
+        </div>
+        <div style="flex:1 1 140px;background:#F0FAF6;border-radius:20px;padding:24px 16px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);position:relative;overflow:hidden;margin-top:16px;">
+          <div style="position:absolute;top:-20px;right:-20px;width:60px;height:60px;border-radius:50%;background:#1FAE7A;opacity:0.08;"></div>
+          <div style="font-size:12px;font-weight:700;color:#5B647A;margin-bottom:8px;position:relative;">売却成約件数</div>
+          <div style="display:grid;">
+            <div style="grid-area:1/1;font-size:44px;font-weight:900;color:#1FAE7A;opacity:0.07;line-height:1;align-self:center;justify-self:center;">420</div>
+            <div style="grid-area:1/1;font-size:32px;font-weight:900;color:#1FAE7A;line-height:1;align-self:center;">420<span style="font-size:13px;font-weight:700;">件以上</span></div>
+          </div>
+          <div style="font-size:11px;color:#5B647A;margin-top:6px;position:relative;">※2023年度実績</div>
+        </div>
+        <div style="flex:1 1 140px;background:#F5F1FF;border-radius:20px;padding:24px 16px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);position:relative;overflow:hidden;margin-top:0;">
+          <div style="position:absolute;top:-20px;right:-20px;width:60px;height:60px;border-radius:50%;background:#7C5CFC;opacity:0.08;"></div>
+          <div style="font-size:12px;font-weight:700;color:#5B647A;margin-bottom:8px;position:relative;">お客様紹介件数</div>
+          <div style="display:grid;">
+            <div style="grid-area:1/1;font-size:44px;font-weight:900;color:#7C5CFC;opacity:0.07;line-height:1;align-self:center;justify-self:center;">963</div>
+            <div style="grid-area:1/1;font-size:32px;font-weight:900;color:#7C5CFC;line-height:1;align-self:center;">963<span style="font-size:13px;font-weight:700;">件以上</span></div>
+          </div>
+          <div style="font-size:11px;color:#5B647A;margin-top:6px;position:relative;">※当社紹介実績</div>
+        </div>
+      </div>
+      <div style="flex:1 1 280px;">
+        <div ref="{{ mapRef }}" style="width:100%;height:280px;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);"></div>
+        <div style="font-size:12px;color:#5B647A;text-align:center;margin-top:8px;">六角橋エリアの査定実績をご覧いただけます。</div>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width:1280px;margin:0 auto;padding:0 48px 48px;">
+    <div style="background:#F5F7FC;border-radius:20px;padding:28px 32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;">
+      <div style="font-size:14px;font-weight:700;color:#1B2440;">実績を踏まえて、まずは無料査定から</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="Assessment.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:12px 24px;">無料査定を依頼する →</a>
+        <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ" style="font-size:14px;font-weight:700;color:#fff;background:#06C755;border-radius:999px;padding:12px 24px;">LINEで相談する →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOICE -->
+  <section id="voice" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#FAF8FC;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">VOICE</div>
+      <h2 style="font-size:28px;font-weight:900;margin:0;">お客様の声</h2>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;" id="voice-row">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="flex:1 1 260px;background:{{ t.tint }};border-radius:20px;padding:28px;min-width:240px;box-shadow:0 16px 40px -22px rgba(27,36,64,0.15);margin-top:{{ t.offset }};">
+          <div style="font-size:32px;color:#3D5AFE;line-height:1;margin-bottom:4px;font-weight:900;">"</div>
+          <p style="font-size:14px;line-height:1.8;color:#1B2440;margin:0 0 16px;">{{ t.quote }}</p>
+          <div style="font-size:12px;color:#5B647A;">{{ t.who }}</div>
+        </div>
+      </sc-for>
+      <div style="flex:1 1 240px;min-width:220px;background:#fff;border-radius:20px;padding:24px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.15);">
+        <img src="assets/google-review-v2.png" style="width:100%;max-width:180px;object-fit:contain;margin-bottom:12px;" />
+        <a href="{{ googleMapsReviewUrl }}" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:700;white-space:nowrap;">口コミをもっと見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section id="flow" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F7FAFF;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">FLOW</div>
+      <h2 style="font-size:28px;font-weight:900;margin:0;">売却査定の流れ</h2>
+    </div>
+    <div style="max-width:680px;margin:0 auto;position:relative;">
+      <div style="position:absolute;left:24px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#3D5AFE 0%,#7C5CFC 50%,#3D5AFE 100%);opacity:0.15;"></div>
+      <sc-for list="{{ flowSteps }}" as="step" hint-placeholder-count="6">
+        <div style="display:flex;gap:24px;">
+          <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+            <div style="width:48px;height:48px;border-radius:50%;background:#3D5AFE;color:#fff;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px -8px rgba(61,90,254,0.5);flex-shrink:0;position:relative;z-index:1;">{{ step.num }}</div>
+            <sc-if value="{{ step.hasArrow }}"><div style="width:2px;flex:1;background:transparent;margin:4px 0;min-height:32px;"></div></sc-if>
+          </div>
+          <div style="padding-bottom:32px;flex:1;">
+            <div style="font-size:16px;font-weight:700;color:#1B2440;line-height:1.6;">{{ step.title }}</div>
+            <div style="font-size:13px;color:#5B647A;margin-top:6px;line-height:1.7;">{{ step.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section id="access" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F6F8FB;">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">ACCESS</div>
+      <h2 style="font-size:28px;font-weight:900;margin:0;">店舗アクセス</h2>
+    </div>
+    <div style="display:flex;gap:48px;align-items:center;flex-wrap:wrap;background:#fff;border-radius:32px;padding:48px;box-shadow:0 24px 60px -30px rgba(27,36,64,0.2);">
+      <img src="assets/about-exterior.jpeg" style="flex:1 1 440px;min-width:280px;width:100%;max-width:520px;height:320px;object-fit:cover;border-radius:24px;box-shadow:0 16px 40px -20px rgba(27,36,64,0.25);" />
+      <div style="flex:1 1 360px;min-width:260px;">
+        <div style="font-size:16px;font-weight:900;color:#1B2440;margin-bottom:16px;">有限会社ハウステック</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-size:13px;font-weight:700;color:#3D5AFE;min-width:64px;">住所</span><span style="font-size:14px;color:#1B2440;line-height:1.7;">〒221-0802<br/>神奈川県横浜市神奈川区六角橋1丁目19-1</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-size:13px;font-weight:700;color:#3D5AFE;min-width:64px;">アクセス</span><span style="font-size:14px;color:#1B2440;line-height:1.7;">東急東横線「白楽駅」から徒歩約4分</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-size:13px;font-weight:700;color:#3D5AFE;min-width:64px;">TEL</span><span style="font-size:14px;color:#1B2440;line-height:1.7;">045-430-3383</span></div>
+          <div style="display:flex;gap:12px;align-items:flex-start;"><span style="font-size:13px;font-weight:700;color:#3D5AFE;min-width:64px;">営業時間</span><span style="font-size:14px;color:#1B2440;line-height:1.7;">10:00〜19:30<br/>定休日：水曜日</span></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
+          <a href="{{ googleMapsPlaceUrl }}" target="_blank" rel="noopener noreferrer" aria-label="Googleマップで店舗情報を見る" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:12px 22px;">Googleマップで見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section id="contact" style="padding:56px 48px;background:linear-gradient(120deg,#3D5AFE,#2540C9);text-align:center;">
+    <h2 style="font-size:24px;font-weight:900;color:#fff;margin:0 0 28px;">無料相談・無料査定受付中</h2>
+    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto;">
+      <a href="Contact.dc.html" style="display:inline-block;transition:transform 0.15s ease;" style-hover="transform:scale(1.03);" style-active="transform:scale(0.98);"><img src="assets/cta-mail.png" style="width:260px;height:auto;object-fit:contain;border-radius:14px;cursor:pointer;" /></a>
+      <a href="Reservation.dc.html" style="display:inline-block;transition:transform 0.15s ease;" style-hover="transform:scale(1.03);" style-active="transform:scale(0.98);"><img src="assets/cta-visit-time.png" style="width:260px;height:auto;object-fit:contain;border-radius:14px;cursor:pointer;" /></a>
+      <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ" style="display:inline-block;transition:transform 0.15s ease;" style-hover="transform:scale(1.03);" style-active="transform:scale(0.98);"><img src="assets/cta-line.png" style="width:260px;height:auto;object-fit:contain;border-radius:14px;cursor:pointer;" /></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#1B2440;color:#C6CCDE;padding:48px 48px 24px;">
+    <div style="display:flex;gap:48px;flex-wrap:wrap;justify-content:space-between;max-width:1280px;margin:0 auto 32px;">
+      <div style="flex:1 1 260px;min-width:220px;">
+        <a href="Housetec LP.dc.html"><img src="assets/logo.png" style="height:36px;filter:brightness(0) invert(1);margin-bottom:16px;" /></a>
+        <div style="font-size:13px;line-height:2;color:#9AA3BE;">有限会社ハウステック<br/>〒221-0802 神奈川県横浜市神奈川区六角橋1丁目19-1<br/>TEL. 045-430-3383<br/>営業時間 10:00〜19:30／定休日 水曜日</div>
+      </div>
+      <div style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+          <a href="#about" style="color:#C6CCDE;">会社案内</a>
+          <a href="#service" style="color:#C6CCDE;">サービス</a>
+          <a href="#flow" style="color:#C6CCDE;">売却の流れ</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+          <a href="#" style="color:#C6CCDE;">ブログ</a>
+          <a href="#" style="color:#C6CCDE;">採用情報</a>
+          <a href="#" style="color:#C6CCDE;">プライバシーポリシー</a>
+          <a href="#" style="color:#C6CCDE;">サイトマップ</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #33395C;padding-top:20px;text-align:center;font-size:12px;color:#7C87A8;">© Housetec. All Rights Reserved.</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// TODO: replace with the verified Google Maps place link (Place ID / share link) for 有限会社ハウステック once confirmed.
+const GOOGLE_MAPS_PLACE_URL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('有限会社ハウステック 神奈川県横浜市神奈川区六角橋1丁目19-1');
+// TODO: replace with the verified Google Business Profile review URL (e.g. https://g.page/r/XXXXXXXX/review) once confirmed.
+const GOOGLE_MAPS_REVIEW_URL = GOOGLE_MAPS_PLACE_URL;
+
+class Component extends DCLogic {
+  mapRef = React.createRef();
+  state = { menuOpen: false };
+  toggleMenu = () => this.setState(s => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => this.setState({ menuOpen: false });
+  componentDidMount() {
+    if (window.L && this.mapRef.current && !this._map) {
+      const center = [35.4877, 139.6203];
+      this._map = L.map(this.mapRef.current, { zoomControl: false, attributionControl: true }).setView(center, 15);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(this._map);
+      setTimeout(() => this._map && this._map.invalidateSize(), 200);
+    }
+  }
+  renderVals() {
+    const menuOpen = this.state.menuOpen;
+    return {
+      mapRef: this.mapRef,
+      toggleMenu: this.toggleMenu,
+      closeMenu: this.closeMenu,
+      googleMapsPlaceUrl: GOOGLE_MAPS_PLACE_URL,
+      googleMapsReviewUrl: GOOGLE_MAPS_REVIEW_URL,
+      mobileMenuStyle: 'position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:100;flex-direction:column;gap:18px;padding:88px 32px 32px;overflow-y:auto;display:' + (menuOpen ? 'flex' : 'none'),
+      services: [
+        { photoSrc:'assets/house-exterior.png', iconSrc:'assets/svc-sale.png', name:'不動産売買仲介', desc:'戸建て・マンション・土地の売却・購入をサポート', badge:null, tint:'#F2F6FF', accent:'#3D5AFE' },
+        { photoSrc:'assets/living-room.png', iconSrc:'assets/svc-rent.png', name:'不動産賃貸仲介', desc:'賃貸物件のご紹介からご契約までサポート', badge:null, tint:'#F0FAF6', accent:'#1FAE7A' },
+        { photoSrc:'assets/apartment-exterior.png', iconSrc:'assets/svc-manage.png', name:'不動産賃貸管理', desc:'入居者募集から管理業務までオーナー様を支援', badge:null, tint:'#F5F1FF', accent:'#7C5CFC' },
+        { photoSrc:'assets/documents.png', iconSrc:'assets/svc-consult.png', name:'相続対策・相談', desc:'相続不動産のご相談から最適な活用方法をご提案', badge:null, tint:'#FFF6F0', accent:'#FF7A59' },
+        { photoSrc:'assets/house-exterior.png', iconSrc:'assets/svc-valueup.png', name:'VALUE UP売却', desc:'AI×リフォームで、売却をプロデュース', badge:'NEW', tint:'#FFF0F5', accent:'#FF5C93' },
+      ],
+      valueupChips: ['リフォーム費用の先払い不要','売れ残りリスクなし','売却期間の短縮','手取り額UPの可能性'],
+      testimonials: [
+        { quote:'相談した翌週には売却できました。地域密着で安心してお任せできる価格でした。', who:'神奈川区六角橋在住 60代女性', tint:'#fff', offset:'0px' },
+        { quote:'AIの完成イメージがとても分かりやすく、購入検討層にも興味を持ってもらえました。', who:'神奈川区神大寺在住 50代男性', tint:'#F5F1FF', offset:'20px' },
+        { quote:'リフォーム費用の先払いがなく、安心して売却活動を進めることができました。', who:'港北区篠原町在住 40代女性', tint:'#F0FAF6', offset:'0px' },
+      ],
+      flowSteps: [
+        { num:'01', title:'ご相談・査定依頼', desc:'お気軽にご相談ください', iconSrc:'', hasIcon:false, noIcon:true, hasArrow:true },
+        { num:'02', title:'現地調査・価格査定', desc:'現地調査の上、適正価格をご提案', iconSrc:'assets/flow-survey.png', hasIcon:false, noIcon:true, hasArrow:true },
+        { num:'03', title:'販売条件のご提案', desc:'AIイメージ活用など戦略をご提案', iconSrc:'', hasIcon:false, noIcon:true, hasArrow:true },
+        { num:'04', title:'販売活動・内覧対応', desc:'多様な媒体で購入検討層にアプローチ', iconSrc:'', hasIcon:false, noIcon:true, hasArrow:true },
+        { num:'05', title:'売買契約の締結', desc:'条件を確定し、契約を締結します', iconSrc:'assets/flow-contract.png', hasIcon:false, noIcon:true, hasArrow:true },
+        { num:'06', title:'引き渡し・決済', desc:'引き渡しまでしっかりサポート', iconSrc:'', hasIcon:false, noIcon:true, hasArrow:false },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

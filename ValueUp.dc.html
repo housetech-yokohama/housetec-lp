@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+    body{margin:0;font-family:'Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased;}
+    a{color:#3D5AFE;text-decoration:none;}
+    a:hover{color:#2540C9;}
+    @media (max-width:768px){ header nav{display:none;} }
+    @media (max-width:480px){
+      body{overflow-x:hidden;}
+      header{padding:10px 16px!important;}
+      header img[alt="Housetec"]{height:30px!important;}
+      header > div{gap:6px!important;}
+      header a{font-size:11px!important;padding:8px 10px!important;white-space:nowrap!important;}
+      section{padding-left:20px!important;padding-right:20px!important;}
+      h1{font-size:26px!important;line-height:1.5!important;}
+      h2{font-size:20px!important;line-height:1.5!important;}
+      p{font-size:14px!important;line-height:1.8!important;}
+      img[src*="valueup-before.png"], img[src*="living-room.png"]{width:100%!important;max-width:260px!important;height:170px!important;}
+      section a[style*="border-radius:999px"]{display:block!important;width:100%!important;max-width:320px!important;margin:0 auto!important;text-align:center!important;box-sizing:border-box!important;font-size:15px!important;padding:16px 20px!important;min-height:44px!important;}
+      footer a[style*="border-radius:999px"]{display:inline-block!important;width:auto!important;}
+      footer{padding:32px 20px 20px!important;}
+      footer > div{flex-direction:column!important;gap:28px!important;}
+    }
+  </style>
+</helmet>
+<div style="width:100%;background:#FFFFFF;color:#1B2440;overflow:hidden;position:relative;min-height:100vh;">
+
+  <header style="display:flex;align-items:center;justify-content:space-between;padding:16px 48px;position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid #EEF0F7;">
+    <a href="Housetec LP.dc.html"><img src="assets/logo.png" alt="Housetec" style="height:44px;width:auto;object-fit:contain;" /></a>
+    <nav style="display:flex;align-items:center;gap:32px;">
+      <a href="Housetec LP.dc.html#service" style="font-size:14px;font-weight:500;color:#1B2440;">サービス</a>
+      <a href="Housetec LP.dc.html#flow" style="font-size:14px;font-weight:500;color:#1B2440;">売却の流れ</a>
+      <a href="Housetec LP.dc.html#achievement" style="font-size:14px;font-weight:500;color:#1B2440;">実績</a>
+      <a href="Housetec LP.dc.html#voice" style="font-size:14px;font-weight:500;color:#1B2440;">お客様の声</a>
+      <a href="Housetec LP.dc.html#about" style="font-size:14px;font-weight:500;color:#1B2440;">会社案内</a>
+    </nav>
+    <div style="display:flex;gap:10px;">
+      <a href="Contact.dc.html" style="font-size:14px;font-weight:700;color:#3D5AFE;border:1.5px solid #3D5AFE;border-radius:999px;padding:10px 20px;white-space:nowrap;">無料相談</a>
+      <a href="Reservation.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:10px 20px;white-space:nowrap;">来店予約</a>
+    </div>
+  </header>
+
+  <section style="padding:64px 48px;max-width:1280px;margin:0 auto;text-align:center;">
+    <div style="font-size:13px;font-weight:700;color:#7C5CFC;letter-spacing:0.1em;margin-bottom:8px;">NEW SERVICE</div>
+    <h1 style="font-size:36px;font-weight:900;margin:0 0 12px;">HOUSETEC <span style="color:#7C5CFC;">VALUE UP</span> 売却</h1>
+    <p style="font-size:16px;color:#5B647A;margin:0;">AI×リフォームで、売却をプロデュース。売却前のちょっとした工事と完成イメージのご提案で、物件の魅力を最大化します。</p>
+  </section>
+
+  <section style="padding:0 48px 64px;max-width:1280px;margin:0 auto;">
+    <div style="display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap;background:linear-gradient(135deg,#F3F0FF 0%,#EDF0FF 100%);border-radius:32px;padding:48px;">
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:700;color:#5B647A;letter-spacing:0.1em;margin-bottom:8px;">BEFORE</div>
+        <img src="assets/valueup-before.png" style="width:320px;height:220px;object-fit:cover;border-radius:20px;box-shadow:0 16px 32px -16px rgba(27,36,64,0.3);filter:sepia(0.5) grayscale(0.6) brightness(0.85) contrast(0.9);" />
+        <div style="font-size:12px;color:#5B647A;margin-top:8px;">現況のままでは魅力が伝わりにくい</div>
+      </div>
+      <div style="width:44px;height:44px;border-radius:50%;background:#7C5CFC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <img src="assets/arrow-right.png" style="width:22px;height:22px;filter:brightness(0) invert(1);" />
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:700;color:#7C5CFC;letter-spacing:0.1em;margin-bottom:8px;">AFTER（AI完成イメージ）</div>
+        <img src="assets/living-room.png" style="width:320px;height:220px;object-fit:cover;border-radius:20px;box-shadow:0 16px 32px -16px rgba(124,92,252,0.35);" />
+        <div style="font-size:12px;color:#5B647A;margin-top:8px;">リフォーム後の暮らしを具体的にイメージ</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 48px 64px;max-width:1280px;margin:0 auto;">
+    <h2 style="font-size:24px;font-weight:900;text-align:center;margin:0 0 32px;">VALUE UP売却の4つの魅力</h2>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">
+      <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="4">
+        <div style="flex:1 1 240px;max-width:280px;background:#F5F7FC;border-radius:20px;padding:28px 24px;text-align:center;">
+          <div style="font-size:15px;font-weight:700;color:#1B2440;">{{ chip }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:56px 48px;background:linear-gradient(120deg,#7C5CFC,#5B3FE0);text-align:center;">
+    <h2 style="font-size:22px;font-weight:900;color:#fff;margin:0 0 24px;">VALUE UP売却について相談する</h2>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="Assessment.dc.html" style="font-size:15px;font-weight:700;color:#7C5CFC;background:#fff;border-radius:999px;padding:14px 28px;">無料査定を依頼する →</a>
+      <a href="Reservation.dc.html" style="font-size:15px;font-weight:700;color:#fff;border:1.5px solid #fff;border-radius:999px;padding:14px 28px;">来店予約をする →</a>
+    </div>
+  </section>
+
+  <footer style="background:#1B2440;color:#C6CCDE;padding:48px 48px 24px;">
+    <div style="display:flex;gap:48px;flex-wrap:wrap;justify-content:space-between;max-width:1280px;margin:0 auto 32px;">
+      <div style="flex:1 1 260px;min-width:220px;">
+        <a href="Housetec LP.dc.html"><img src="assets/logo.png" style="height:36px;filter:brightness(0) invert(1);margin-bottom:16px;" /></a>
+        <div style="font-size:13px;line-height:2;color:#9AA3BE;">有限会社ハウステック<br/>〒221-0802 神奈川県横浜市神奈川区六角橋1丁目19-1<br/>TEL. 045-430-3383<br/>営業時間 10:00〜19:30／定休日 水曜日</div>
+      </div>
+      <div style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+          <a href="Housetec LP.dc.html#about" style="color:#C6CCDE;">会社案内</a>
+          <a href="Housetec LP.dc.html#service" style="color:#C6CCDE;">サービス</a>
+          <a href="Housetec LP.dc.html#flow" style="color:#C6CCDE;">売却の流れ</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #33395C;padding-top:20px;text-align:center;font-size:12px;color:#7C87A8;">© Housetec. All Rights Reserved.</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      chips: ['リフォーム費用の先払い不要','売れ残りリスクなし','売却期間の短縮','手取り額UPの可能性'],
+    };
+  }
+}
+
+</script>
+</body>
+</html>
