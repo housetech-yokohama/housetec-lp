@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://housetec-lp.vercel.app/sitemap.xml
