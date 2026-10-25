@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/Housetec LP.dc.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Housetec%20LP.dc.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
