@@ -12,6 +12,7 @@
 <meta property="og:description" content="不動産の売却・購入・住み替え・相続などについて、有限会社ハウステックへ無料でご相談いただけます。">
 <meta property="og:url" content="https://housetec-lp.vercel.app/Contact.dc.html">
 <script src="./support.js"></script>
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 <x-dc>
@@ -121,7 +122,8 @@
       </div>
     </div>
     <div style="border-top:1px solid #33395C;padding-top:20px;text-align:center;font-size:12px;color:#7C87A8;">© Housetec. All Rights Reserved.</div>
-  </footer>
+  <p style="font-size:13px;"><a href="/privacy.html" style="color:#C6CCDE;">お問い合わせ情報・アクセス解析</a></p>
+</footer>
 </div>
 
 </x-dc>
@@ -182,6 +184,8 @@ class Component extends DCLogic {
       if (!result || result.ok !== true || (result.errors && result.errors.length)) {
         throw new Error('Formspree receipt was not confirmed');
       }
+      // Analytics must never change the outcome of the enquiry.
+      try { if (window.housetecAnalytics) window.housetecAnalytics.trackLead('contact'); } catch (_) {}
       this.setState({ submitting: false, submitted: true, submitFailed: false, errorMessage: '', form: emptyForm() });
     } catch (error) {
       // A timeout does not prove non-delivery. Preserve input; never auto-retry.
