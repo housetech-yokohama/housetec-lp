@@ -25,11 +25,22 @@
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     window.gtag('js', new Date());
+    // Recognize only our fixed public Business Profile link. Never forward query input.
+    let campaign = {};
+    try {
+      const url = new URL(window.location.href);
+      const expected = { utm_source: 'google', utm_medium: 'organic', utm_campaign: 'gbp_profile' };
+      if (Object.entries(expected).every(([key, value]) =>
+        url.searchParams.getAll(key).length === 1 && url.searchParams.get(key) === value)) {
+        campaign = { campaign_source: 'google', campaign_medium: 'organic', campaign_name: 'gbp_profile' };
+      }
+    } catch (_) {}
     const pageLocation = window.location.origin + window.location.pathname;
     const pageReferrer = safeURL(document.referrer);
     // Apply to all events, including events emitted by the Google library.
     window.gtag('set', { page_location: pageLocation, page_referrer: pageReferrer });
     window.gtag('config', ID, {
+      ...campaign,
       page_location: pageLocation, page_referrer: pageReferrer,
       allow_google_signals: false, allow_ad_personalization_signals: false
     });
