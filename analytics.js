@@ -4,7 +4,7 @@
   if (window.housetecAnalytics) return;
   const ID = 'G-3BNE4X3FEK';
   const KEY = 'housetec.analytics.disabled';
-  const pages = new Set(['/', '/index.html', '/ValueUp.dc.html', '/Assessment.dc.html', '/Contact.dc.html', '/Reservation.dc.html', '/kanagawa-baikyaku.html', '/hakuraku-baikyaku.html', '/rokkakubashi-baikyaku.html', '/privacy.html', '/rokkakubashi-souzoku-jirei.html']);
+  const pages = new Set(['/', '/index.html', '/ValueUp.dc.html', '/Assessment.dc.html', '/Contact.dc.html', '/Reservation.dc.html', '/kanagawa-baikyaku.html', '/hakuraku-baikyaku.html', '/rokkakubashi-baikyaku.html', '/privacy.html', '/rokkakubashi-souzoku-jirei.html', '/oguchi-souzoku-jirei.html']);
   const isProduction = window.location.hostname === 'housetec-lp.vercel.app';
   let disabled = false;
   try { disabled = window.localStorage.getItem(KEY) === '1'; } catch (_) {}
