@@ -23,6 +23,13 @@
     a{color:#3D5AFE;text-decoration:none;}
     a:hover{color:#2540C9;}
 
+    .inheritance-actions{display:flex;flex-wrap:wrap;gap:12px;}
+    .inheritance-actions a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:12px;font-size:14px;font-weight:700;box-sizing:border-box;}
+    .inheritance-primary{background:#3D5AFE;color:#fff;}
+    .inheritance-primary:hover{background:#2540C9;color:#fff;}
+    .inheritance-secondary{background:#fff;border:1px solid #3D5AFE;color:#3D5AFE;}
+    .inheritance-actions a:focus-visible{outline:3px solid #1B2440;outline-offset:4px;}
+    @media(max-width:600px){.inheritance-actions{flex-direction:column;}.inheritance-actions a{width:100%;}}
     .sale-case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
     .sale-case-card{display:flex;flex-direction:column;min-width:0;padding:28px;background:#fff;border:1px solid #E2E7F2;border-radius:20px;color:#1B2440;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;}
     .sale-case-card:hover{color:#1B2440;border-color:#3D5AFE;box-shadow:0 12px 28px -18px rgba(27,36,64,.3);}
@@ -167,6 +174,19 @@
         </div>
       </div>
     </div>
+  </section>
+
+
+  <!-- INHERITED HOME CONSULTATION -->
+  <section id="inheritance-consultation" style="max-width:1280px;margin:0 auto;padding:40px 48px;background:#F5F8FC;box-sizing:border-box;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;color:#3D5AFE;">相続した家のご相談</div>
+    <h2 style="font-size:28px;line-height:1.6;margin:12px 0;">相続した家、貸すか売るか。<br/>迷っている段階からご相談ください。</h2>
+    <p style="font-size:15px;line-height:1.9;color:#5B647A;margin:0 0 20px;">神奈川区・白楽・六角橋・大口で、相続した戸建ての活用をお考えの方へ。賃貸と売却それぞれの収益・費用・リスクを整理し、ご希望に合う選択を一緒に考えます。</p>
+    <div class="inheritance-actions">
+      <a href="/Contact.dc.html" class="inheritance-primary">貸すか売るか、無料で相談する →</a>
+      <a href="#sale-cases" class="inheritance-secondary">大口・六角橋の売却事例を見る →</a>
+    </div>
+    <p style="font-size:13px;line-height:1.8;color:#5B647A;margin:16px 0 0;">売却を決めていなくても、片付けや修繕を始める前でもご相談いただけます。</p>
   </section>
 
   <!-- SERVICE -->
