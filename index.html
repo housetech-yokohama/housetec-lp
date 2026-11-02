@@ -423,7 +423,7 @@
         <a href="/oguchi-souzoku-jirei.html#customer-voice" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;">お客様の声と売却事例を読む →</a>
       </article>
       <div style="flex:1 1 240px;min-width:220px;background:#fff;border-radius:20px;padding:24px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.15);">
-        <img src="assets/google-review-v2.png" style="width:100%;max-width:180px;object-fit:contain;margin-bottom:12px;" />
+        <div style="font-size:15px;font-weight:700;margin-bottom:12px;">Googleマップの口コミ</div><div style="font-size:36px;font-weight:900;color:#3D5AFE;">4.9<span style="font-size:15px;font-weight:500;"> / 5</span></div><p style="font-size:14px;color:#5B647A;margin:8px 0;">113件の口コミ</p><p style="font-size:12px;color:#5B647A;line-height:1.8;margin:8px 0 16px;">2026年11月3日確認<br/>最新の評価・件数はGoogleマップをご覧ください。</p>
         <a href="{{ googleMapsReviewUrl }}" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:700;white-space:nowrap;">口コミをもっと見る →</a>
       </div>
     </div>
@@ -516,8 +516,8 @@
 <script type="text/x-dc" data-dc-script>
 // TODO: replace with the verified Google Maps place link (Place ID / share link) for 有限会社ハウステック once confirmed.
 const GOOGLE_MAPS_PLACE_URL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('有限会社ハウステック 神奈川県横浜市神奈川区六角橋1丁目19-1');
-// TODO: replace with the verified Google Business Profile review URL (e.g. https://g.page/r/XXXXXXXX/review) once confirmed.
-const GOOGLE_MAPS_REVIEW_URL = GOOGLE_MAPS_PLACE_URL;
+// Verified Google Maps review-list URL for the Hakuraku office.
+const GOOGLE_MAPS_REVIEW_URL = "https://www.google.com/maps/place/有限会社ハウステック+白楽本社/@35.4887882,139.6256647,17z/data=!3m1!5s0x60185ea3911ebb83:0xe68436a87f227ae3!4m8!3m7!1s0x60185ea3911f023d:0x7c38fd13e32c5b87!8m2!3d35.4887882!4d139.6256647!9m1!1b1!16s%2Fg%2F11cs5mn9yp";
 
 class Component extends DCLogic {
   mapRef = React.createRef();
