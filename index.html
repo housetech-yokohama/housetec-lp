@@ -412,13 +412,16 @@
       <h2 style="font-size:28px;font-weight:900;margin:0;">お客様の声</h2>
     </div>
     <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;" id="voice-row">
-      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
-        <div style="flex:1 1 260px;background:{{ t.tint }};border-radius:20px;padding:28px;min-width:240px;box-shadow:0 16px 40px -22px rgba(27,36,64,0.15);margin-top:{{ t.offset }};">
-          <div style="font-size:32px;color:#3D5AFE;line-height:1;margin-bottom:4px;font-weight:900;">"</div>
-          <p style="font-size:14px;line-height:1.8;color:#1B2440;margin:0 0 16px;">{{ t.quote }}</p>
-          <div style="font-size:12px;color:#5B647A;">{{ t.who }}</div>
-        </div>
-      </sc-for>
+      <article style="flex:2 1 420px;min-width:0;background:#fff;border-radius:20px;padding:28px;box-sizing:border-box;box-shadow:0 16px 40px -22px rgba(27,36,64,0.15);">
+        <div style="font-size:13px;font-weight:700;color:#3D5AFE;margin-bottom:12px;">大口・相続した戸建ての売却</div>
+        <h3 style="font-size:22px;line-height:1.6;margin:0 0 16px;">遠方からの売却も、状況が分かり安心できました</h3>
+        <blockquote style="margin:0;padding:0;">
+          <p style="font-size:15px;line-height:1.9;color:#1B2440;margin:0 0 16px;">地方に住んでいるため、相続した家へ何度も足を運ぶことが難しい状況でした。対面での打ち合わせを少なく進められ、売却をお任せできました。</p>
+          <p style="font-size:15px;line-height:1.9;color:#1B2440;margin:0 0 16px;">その都度連絡をいただけたので、現地へ行けなくても販売状況を把握でき、安心して手続きを終えることができました。</p>
+        </blockquote>
+        <p style="font-size:12px;line-height:1.8;color:#5B647A;margin:0 0 16px;">※掲載了承済みの感想を抜粋し、読みやすく整えています。お客様個人の感想です。</p>
+        <a href="/oguchi-souzoku-jirei.html#customer-voice" style="display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700;">お客様の声と売却事例を読む →</a>
+      </article>
       <div style="flex:1 1 240px;min-width:220px;background:#fff;border-radius:20px;padding:24px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.15);">
         <img src="assets/google-review-v2.png" style="width:100%;max-width:180px;object-fit:contain;margin-bottom:12px;" />
         <a href="{{ googleMapsReviewUrl }}" target="_blank" rel="noopener noreferrer" style="font-size:13px;font-weight:700;white-space:nowrap;">口コミをもっと見る →</a>
@@ -546,11 +549,6 @@ class Component extends DCLogic {
         { photoSrc:'assets/house-exterior.png', iconSrc:'assets/svc-valueup.png', name:'VALUE UP売却', desc:'AI×リフォームで、売却をプロデュース', badge:'NEW', tint:'#FFF0F5', accent:'#FF5C93' },
       ],
       valueupChips: ['リフォーム費用の先払い不要','売れ残りリスクなし','売却期間の短縮','手取り額UPの可能性'],
-      testimonials: [
-        { quote:'相談した翌週には売却できました。地域密着で安心してお任せできる価格でした。', who:'神奈川区六角橋在住 60代女性', tint:'#fff', offset:'0px' },
-        { quote:'AIの完成イメージがとても分かりやすく、購入検討層にも興味を持ってもらえました。', who:'神奈川区神大寺在住 50代男性', tint:'#F5F1FF', offset:'20px' },
-        { quote:'リフォーム費用の先払いがなく、安心して売却活動を進めることができました。', who:'港北区篠原町在住 40代女性', tint:'#F0FAF6', offset:'0px' },
-      ],
       flowSteps: [
         { num:'01', title:'ご相談・査定依頼', desc:'お気軽にご相談ください', iconSrc:'', hasIcon:false, noIcon:true, hasArrow:true },
         { num:'02', title:'現地調査・価格査定', desc:'現地調査の上、適正価格をご提案', iconSrc:'assets/flow-survey.png', hasIcon:false, noIcon:true, hasArrow:true },
