@@ -54,6 +54,18 @@
     if (!started || disabled || typeof window.gtag !== 'function') return;
     try { window.gtag('event', name, params); } catch (_) {}
   }
+  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case']);
+  const consultationForms = { '/Contact.dc.html': 'contact', '/Assessment.dc.html': 'assessment', '/Reservation.dc.html': 'reservation' };
+  function trackConsultation(anchor) {
+    try {
+      const location = anchor.getAttribute('data-consultation-location');
+      if (!consultationLocations.has(location)) return;
+      const url = new URL(anchor.getAttribute('href') || '', window.location.href);
+      const form = consultationForms[url.pathname];
+      if (url.origin !== window.location.origin || url.search || url.hash || !form) return;
+      event('consultation_click', { cta_location: location, form_type: form, transport_type: 'beacon' });
+    } catch (_) {}
+  }
   function updatePreference(off) {
     disabled = off;
     window['ga-disable-' + ID] = off;
@@ -76,6 +88,7 @@
     const chain = typeof e.composedPath === 'function' ? e.composedPath() : [e.target];
     const anchor = chain.find(node => node && typeof node.getAttribute === 'function' && node.tagName === 'A');
     if (anchor) {
+      trackConsultation(anchor);
       const href = anchor.getAttribute('href') || '';
       if (/^tel:/i.test(href)) event('contact_click', { contact_method: 'phone' });
       else {
