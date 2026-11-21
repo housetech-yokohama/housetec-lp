@@ -18,15 +18,16 @@ function setup(fetchImpl, options = {}) {
       if (options.batched) pending.push(apply); else apply();
     }
   }
-  const ctx = vm.createContext({ DCLogic, AbortController,
+  const ctx = vm.createContext({ DCLogic, AbortController, URLSearchParams, window: { location: { search: options.search || '' } },
     fetch: (...args) => { calls.push(args); return fetchImpl(...args); },
     setTimeout: (callback, delay) => { const id = ++timerId; timers.set(id, { callback, delay }); return id; },
     clearTimeout: id => timers.delete(id),
   });
   vm.runInContext(script + '\nglobalThis.TestComponent = Component;', ctx);
   const component = new ctx.TestComponent();
-  component.state.form = validForm();
-  return { component, calls, timers, flush() { while (pending.length) pending.shift()(); } };
+  const initialMessage = component.state.form.message;
+  if (!options.keepInitial) component.state.form = validForm();
+  return { component, initialMessage, calls, timers, flush() { while (pending.length) pending.shift()(); } };
 }
 const success = async () => ({ ok: true, json: async () => ({ ok: true, next: '/thanks' }) });
 
@@ -35,7 +36,7 @@ test('sends the complete enquiry to the dedicated endpoint; phone stays optional
   c.state.form.name = '  社内テスト  ';
   await c.handleSubmit(event());
   assert.equal(calls.length, 1);
-  assert.equal(calls[0][0], 'https://formspree.io/f/mjyygqkk');
+  assert.equal(calls[0][0], 'https://formspree.io/f/xnppendv');
   const request = calls[0][1], payload = JSON.parse(request.body);
   assert.equal(request.method, 'POST');
   assert.equal(request.headers.Accept, 'application/json');
@@ -178,4 +179,57 @@ test('markup exposes an error and phone fallback; stale home links and PII loggi
   for (const field of ['name', 'phone', 'email', 'message']) {
     assert.match(html, new RegExp('htmlFor="contact-' + field + '"'));
   }
+});
+
+test('fixed consultation topics arrive as editable message text without sending', () => {
+  for (const topic of ['inheritance', 'relocation', 'sale_review', 'comparison']) {
+    const s = setup(success, { search: '?topic=' + topic, keepInitial: true });
+    assert.ok(s.component.state.form.message.length > 10);
+    assert.equal(s.component.state.form.name, '');
+    assert.equal(s.component.state.form.email, '');
+    assert.equal(s.calls.length, 0);
+    s.component.renderVals().onMessage({ target: { value: '自分の言葉で相談します' } });
+    assert.equal(s.component.state.form.message, '自分の言葉で相談します');
+  }
+});
+test('unknown, duplicate or arbitrary URL text never becomes the enquiry message', () => {
+  for (const search of ['?topic=private@example.com', '?topic=__proto__', '?topic=inheritance&topic=relocation', '?message=private@example.com', '?topic=%3Cscript%3E']) {
+    const s = setup(success, { search, keepInitial: true });
+    assert.equal(s.component.state.form.message, '');
+    assert.equal(s.calls.length, 0);
+  }
+});
+test('a starter preserves other fields and never overwrites a visitor-edited message', () => {
+  const s = setup(success, { keepInitial: true });
+  s.component.state.form.name = '相談者';
+  s.component.state.form.email = 'qa@example.com';
+  s.component.chooseStarter('inheritance');
+  const first = s.component.state.form.message;
+  assert.ok(first.length > 10);
+  s.component.chooseStarter('relocation');
+  assert.notEqual(s.component.state.form.message, first);
+  s.component.renderVals().onMessage({ target: { value: '私が入力した相談文' } });
+  s.component.chooseStarter('sale_review');
+  assert.equal(s.component.state.form.message, '私が入力した相談文');
+  assert.equal(s.component.state.form.name, '相談者');
+  assert.equal(s.component.state.form.email, 'qa@example.com');
+  assert.match(s.component.state.starterNotice, /入力済み/);
+  assert.equal(s.calls.length, 0);
+});
+test('starter buttons cannot alter a sending enquiry', () => {
+  const s = setup(success);
+  const before = JSON.stringify(s.component.state.form);
+  s.component.submitInFlight = true;
+  s.component.chooseStarter('inheritance');
+  assert.equal(JSON.stringify(s.component.state.form), before);
+  assert.equal(s.calls.length, 0);
+});
+test('the editable starter is sent only with the visitor-confirmed form submission', async () => {
+  const s = setup(success, { search: '?topic=sale_review', keepInitial: true });
+  s.component.state.form.name = '社内テスト';
+  s.component.state.form.email = 'qa@example.com';
+  const expected = s.component.state.form.message;
+  await s.component.handleSubmit(event());
+  assert.equal(s.calls.length, 1);
+  assert.equal(JSON.parse(s.calls[0][1].body).message, expected);
 });
