@@ -40,3 +40,37 @@ for(const [file,type] of [['Assessment.dc.html','assessment'],['Contact.dc.html'
   test(file+': lead is emitted only after confirmed receipt',async()=>{const good=await submit(true);assert.equal(good.c.state.submitted,true);assert.deepEqual(good.leads,[type]);const bad=await submit(false);assert.equal(bad.c.state.submitted,false);assert.equal(bad.leads.length,0);});
   test(file+': analytics failure cannot turn a successful enquiry into an error',async()=>{const s=await submit(true,true);assert.equal(s.c.state.submitted,true);assert.equal(s.c.state.submitFailed,false);});
 }
+
+const consultationAnchor = (href, location='home_topic_sale_review') => ({ tagName:'A', getAttribute: key => key === 'href' ? href : key === 'data-consultation-location' ? location : null });
+test('approved topic links retain consultation click measurement without sending their query or text', () => {
+  const s = setup();
+  for (const topic of ['inheritance','relocation','sale_review','comparison']) {
+    s.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=' + topic)]});
+  }
+  const events=s.commands().filter(v=>v[0]==='event' && v[1]==='consultation_click');
+  assert.equal(events.length,4);
+  for(const event of events) assert.deepEqual(Object.keys(event[2]),['cta_location','form_type','transport_type']);
+  assert.ok(!JSON.stringify(events).includes('topic='));
+});
+test('consultation measurement rejects arbitrary, duplicate, cross-origin and private URL input', () => {
+  const s=setup();
+  for(const href of [
+    '/Contact.dc.html?topic=private@example.com',
+    '/Contact.dc.html?topic=inheritance&email=private@example.com',
+    '/Contact.dc.html?topic=inheritance&topic=relocation',
+    '/Contact.dc.html?message=private@example.com',
+    '/Assessment.dc.html?topic=inheritance',
+    '/Contact.dc.html?topic=inheritance#private',
+    'https://example.com/Contact.dc.html?topic=inheritance'
+  ]) s.handlers.click({composedPath:()=>[consultationAnchor(href)]});
+  assert.equal(s.commands().filter(v=>v[0]==='event' && v[1]==='consultation_click').length,0);
+  assert.ok(!JSON.stringify(s.commands()).includes('private@example.com'));
+});
+test('existing consultation links still work and previews do not emit topic click events', () => {
+  const live=setup();
+  live.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html','home_sale_hero')]});
+  assert.equal(live.commands().filter(v=>v[0]==='event' && v[1]==='consultation_click').length,1);
+  const preview=setup({host:'housetec-lp-git-preview.vercel.app'});
+  preview.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=sale_review')]});
+  assert.equal(preview.commands().length,0);
+});

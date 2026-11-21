@@ -23,7 +23,12 @@
     body{margin:0;font-family:'Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased;}
     a{color:#3D5AFE;text-decoration:none;}
     a:hover{color:#2540C9;}
-    input,select,textarea{font-family:inherit;}
+    input,select,textarea,button{font-family:inherit;}
+    .consultation-starters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0;}
+    .consultation-starters button{font-size:13px;font-weight:700;line-height:1.6;text-align:left;min-height:44px;padding:10px 12px;border:1px solid #B8C3EF;border-radius:10px;background:#F7F9FF;color:#304BD8;cursor:pointer;}
+    .consultation-starters button:hover{background:#EDF0FF;}
+    .consultation-starters button:focus-visible{outline:3px solid #1B2440;outline-offset:3px;}
+    .consultation-starters button:disabled{opacity:.6;cursor:default;}
     @media (max-width:768px){ header nav{display:none!important;} }
     @media (max-width:768px){
       header{padding:12px 16px!important;flex-wrap:wrap;gap:10px;box-sizing:border-box;}
@@ -74,7 +79,7 @@
       <div role="status" aria-live="polite" style="text-align:center;padding:80px 20px;">
         <div style="width:72px;height:72px;border-radius:50%;background:#EDF0FF;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px;color:#3D5AFE;">✓</div>
         <h1 style="font-size:26px;font-weight:900;margin:0 0 12px;">送信ありがとうございました</h1>
-        <p style="font-size:15px;color:#5B647A;line-height:1.9;margin:0 0 32px;">担当者より2営業日以内にご連絡いたします。</p>
+        <p style="font-size:15px;color:#5B647A;line-height:1.9;margin:0 0 32px;">担当者がご相談内容を確認し、2営業日以内にご連絡いたします。ご相談に合わせて、次に必要な準備を一緒に整理します。</p>
         <a href="/" style="display:inline-block;font-size:15px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:14px 32px;">トップページへ戻る</a>
       </div>
     </sc-if>
@@ -83,7 +88,7 @@
         <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">売却・相続・住み替えのご相談</div>
         <h1 style="font-size:30px;font-weight:900;margin:0 0 12px;">不動産の無料相談</h1>
         <p style="font-size:15px;color:#5B647A;line-height:1.8;margin:0 0 36px;">売るか迷っている方、相続した家や他社で販売中の物件もご相談ください。購入など、不動産に関するご相談も承ります。</p>
-        <p style="font-size:14px;color:#5B647A;line-height:1.8;">必須はお名前・メールアドレス・ご相談内容の3項目です。担当者より2営業日以内にご連絡いたします。</p>
+        <p style="font-size:14px;color:#5B647A;line-height:1.8;">必須はお名前・メールアドレス・ご相談内容の3項目です。電話番号は任意です。担当者が内容を確認し、2営業日以内にご連絡いたします。</p>
         <form id="contact-form" aria-busy="{{ submitting }}" onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:20px;">
           <div>
             <label htmlFor="contact-name" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">お名前 <span style="color:#FF7A59;">必須</span></label>
@@ -95,7 +100,14 @@
           </div>
           <div>
             <label htmlFor="contact-message" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">ご相談内容 <span style="color:#FF7A59;">必須</span></label>
-            <p id="contact-message-help" style="font-size:13px;line-height:1.8;color:#5B647A;margin:0 0 10px;">短い文章で大丈夫です。例：「相続した家を貸すか売るか迷っている」「住み替えを相談したい」。所在地は町名までなど、分かる範囲でお知らせください。詳しい住所や物件資料は、送信時には必要ありません。</p><textarea aria-describedby="contact-message-help" id="contact-message" name="message" disabled="{{ submitting }}" required="true" value="{{ form.message }}" onChange="{{ onMessage }}" rows="6" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;resize:vertical;" placeholder="例：相続した家の売却を考えています。何から始めればよいか相談したいです。"></textarea>
+            <p id="contact-message-help" style="font-size:13px;line-height:1.8;color:#5B647A;margin:0 0 10px;">短い文章で大丈夫です。下から近いテーマを選ぶと、相談文の書き出しが入ります。所在地は町名までなど、分かる範囲でお知らせください。詳しい住所や物件資料は、送信時には必要ありません。</p>
+            <div class="consultation-starters" role="group" aria-label="相談文の書き出しを選ぶ">
+              <button type="button" disabled="{{ submitting }}" onClick="{{ chooseInheritance }}">相続した家</button>
+              <button type="button" disabled="{{ submitting }}" onClick="{{ chooseSaleReview }}">他社で販売中</button>
+              <button type="button" disabled="{{ submitting }}" onClick="{{ chooseRelocation }}">売却と住み替え</button>
+              <button type="button" disabled="{{ submitting }}" onClick="{{ chooseComparison }}">売却方法の比較</button>
+            </div>
+            <p role="status" aria-live="polite" style="font-size:13px;line-height:1.8;color:#304BD8;margin:0 0 10px;">{{ starterNotice }}</p><textarea aria-describedby="contact-message-help" id="contact-message" name="message" disabled="{{ submitting }}" required="true" value="{{ form.message }}" onChange="{{ onMessage }}" rows="6" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;resize:vertical;" placeholder="例：相続した家の売却を考えています。何から始めればよいか相談したいです。"></textarea>
           </div>
           <div>
             <label htmlFor="contact-phone" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">電話番号 <span style="color:#5B647A;font-weight:400;">任意</span></label>
@@ -146,11 +158,47 @@ function emptyForm() {
   return { name:'', phone:'', email:'', message:'', honeypot:'' };
 }
 
+const CONSULTATION_STARTERS = Object.freeze({
+  inheritance: '相続した家について、貸す場合と売る場合の違いや、売却の進め方を相談したいです。',
+  relocation: '自宅の売却と住み替え先の購入を、どの順番で進めるか相談したいです。',
+  sale_review: '他社で販売中の物件について、売出価格・掲載写真・販売方法を見直せるか相談したいです。',
+  comparison: '現況で売る場合、リフォームして売る場合、業者買取を選ぶ場合を、費用と手取りも含めて比較したいです。',
+});
+function requestedStarter() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.getAll('topic').length !== 1) return '';
+    const topic = params.get('topic');
+    return Object.prototype.hasOwnProperty.call(CONSULTATION_STARTERS, topic) ? topic : '';
+  } catch (_) { return ''; }
+}
+function startingForm() {
+  const form = emptyForm();
+  const topic = requestedStarter();
+  if (topic) form.message = CONSULTATION_STARTERS[topic];
+  return form;
+}
+
 class Component extends DCLogic {
-  state = { submitting: false, submitted: false, submitFailed: false, errorMessage: '', form: emptyForm() };
+  state = { submitting: false, submitted: false, submitFailed: false, errorMessage: '', starterNotice: requestedStarter() ? '選んだテーマの相談文を入れています。内容は自由に書き換えられます。' : '', form: startingForm() };
   // A synchronous guard also prevents duplicates before React updates state.
   submitInFlight = false;
   set = (key, val) => this.setState(s => ({ form: { ...s.form, [key]: val } }));
+
+  chooseStarter = (topic) => {
+    if (!Object.prototype.hasOwnProperty.call(CONSULTATION_STARTERS, topic)) return;
+    this.setState(s => {
+      if (this.submitInFlight || s.submitting || s.submitted) return {};
+      const message = s.form.message.trim();
+      if (message && !Object.values(CONSULTATION_STARTERS).includes(message)) {
+        return { starterNotice: '入力済みの文章は残しています。必要に応じて、そのまま編集してください。' };
+      }
+      return {
+        form: { ...s.form, message: CONSULTATION_STARTERS[topic] },
+        starterNotice: '相談文を入れました。分かる範囲で付け足すか、この内容でご相談いただけます。',
+      };
+    });
+  };
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -223,6 +271,11 @@ class Component extends DCLogic {
       onPhone: e => this.set('phone', e.target.value),
       onEmail: e => this.set('email', e.target.value),
       onMessage: e => this.set('message', e.target.value),
+      starterNotice: this.state.starterNotice,
+      chooseInheritance: () => this.chooseStarter('inheritance'),
+      chooseRelocation: () => this.chooseStarter('relocation'),
+      chooseSaleReview: () => this.chooseStarter('sale_review'),
+      chooseComparison: () => this.chooseStarter('comparison'),
       onHoneypot: e => this.set('honeypot', e.target.value),
       handleSubmit: this.handleSubmit,
     };

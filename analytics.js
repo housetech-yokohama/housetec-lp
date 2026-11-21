@@ -54,7 +54,8 @@
     if (!started || disabled || typeof window.gtag !== 'function') return;
     try { window.gtag('event', name, params); } catch (_) {}
   }
-  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare']);
+  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare', 'home_topic_inheritance', 'home_topic_sale_review', 'home_topic_relocation', 'home_topic_comparison', 'kanagawa_sale_review']);
+  const consultationTopics = new Set(['inheritance', 'relocation', 'sale_review', 'comparison']);
   const consultationForms = { '/Contact.dc.html': 'contact', '/Assessment.dc.html': 'assessment', '/Reservation.dc.html': 'reservation' };
   function trackConsultation(anchor) {
     try {
@@ -62,7 +63,12 @@
       if (!consultationLocations.has(location)) return;
       const url = new URL(anchor.getAttribute('href') || '', window.location.href);
       const form = consultationForms[url.pathname];
-      if (url.origin !== window.location.origin || url.search || url.hash || !form) return;
+      if (url.origin !== window.location.origin || url.hash || !form) return;
+      if (url.search) {
+        const topics = url.searchParams.getAll('topic');
+        if (form !== 'contact' || topics.length !== 1 || !consultationTopics.has(topics[0]) ||
+            [...url.searchParams.keys()].some(key => key !== 'topic')) return;
+      }
       event('consultation_click', { cta_location: location, form_type: form, transport_type: 'beacon' });
     } catch (_) {}
   }

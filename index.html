@@ -52,6 +52,15 @@
     .sale-case-card p{font-size:14px;line-height:1.9;color:#5B647A;margin:0 0 20px;}
     .sale-case-link{font-size:14px;font-weight:700;color:#3D5AFE;margin-top:auto;min-height:44px;display:flex;align-items:center;}
     @media(max-width:1000px){.sale-case-grid{grid-template-columns:1fr;gap:16px;}.sale-case-card{padding:22px;}.sale-case-card h3{font-size:20px;}}
+
+    .seller-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0;}
+    .seller-topic-card{display:flex;flex-direction:column;min-width:0;padding:24px;background:#fff;border:1px solid #dce3f3;border-radius:18px;color:#1B2440;box-sizing:border-box;}
+    .seller-topic-card h3{font-size:20px;line-height:1.6;margin:0 0 10px;}
+    .seller-topic-card p{font-size:14px;line-height:1.9;color:#5B647A;margin:0 0 18px;}
+    .seller-topic-card span{font-size:14px;font-weight:700;color:#304BD8;margin-top:auto;min-height:44px;display:flex;align-items:center;}
+    .seller-topic-card:hover{color:#1B2440;border-color:#3D5AFE;box-shadow:0 10px 24px -18px rgba(27,36,64,.3);}
+    .seller-topic-card:focus-visible{outline:3px solid #1B2440;outline-offset:4px;}
+    @media(max-width:600px){.seller-topic-grid{grid-template-columns:1fr;}.seller-topic-card{padding:20px;}#hero-highlights{display:none!important;}#seller-hero{padding-bottom:20px!important;}#seller-hero-frame{min-height:0!important;}#seller-hero-copy{padding:100px 20px 24px!important;box-sizing:border-box;}}
     @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
     #voice-row > div:nth-child(1){transform:rotate(-1deg);}
     #voice-row > div:nth-child(3){transform:rotate(1deg);}
@@ -167,17 +176,17 @@
   </div>
 
   <!-- HERO -->
-  <section style="position:relative;padding:0 0 100px;overflow:visible;">
-    <div style="position:relative;left:50%;margin-left:-50vw;width:100vw;min-height:620px;display:flex;align-items:center;">
+  <section id="seller-hero" style="position:relative;padding:0 0 100px;overflow:visible;">
+    <div id="seller-hero-frame" style="position:relative;left:50%;margin-left:-50vw;width:100vw;min-height:620px;display:flex;align-items:center;">
       <div id="hero-arcade" style="position:absolute;inset:0;width:100%;height:100%;background-image:url('./assets/hero-arcade.webp');background-size:cover;background-position:center;clip-path:polygon(0% 0%,100% 0%,100% 85%,95% 80.95%,90% 80.24%,85% 83.46%,80% 87.94%,75% 90%,70% 87.94%,65% 83.46%,60% 80.24%,55% 80.95%,50% 85%,45% 89.05%,40% 89.76%,35% 86.54%,30% 82.06%,25% 80%,20% 82.06%,15% 86.54%,10% 89.76%,5% 89.05%,0% 85%);"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,35,60,0.08) 65%, rgba(20,35,60,0.16) 100%);"></div>
       <img alt="" width="209" height="177" decoding="async" src="assets/consultation.png" style="position:absolute;bottom:64px;right:80px;width:220px;height:150px;object-fit:cover;border-radius:24px;border:6px solid #fff;box-shadow:0 20px 40px -12px rgba(27,36,64,0.3);z-index:3;transform:rotate(-2.5deg);" />
-      <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 48px;width:100%;">
+      <div id="seller-hero-copy" style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 48px;width:100%;">
         <div style="max-width:600px;background:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:28px;padding:32px 24px;box-shadow:0 20px 50px -26px rgba(27,36,64,0.22);" id="hero-glass">
           <div style="display:inline-block;font-size:13px;font-weight:700;color:#3D5AFE;background:#EDF0FF;padding:6px 16px;border-radius:999px;margin-bottom:20px;">神奈川区・六角橋エリアに根ざして25年</div>
           <h1 style="font-size:44px;line-height:1.4;font-weight:900;margin:0 0 24px;letter-spacing:-0.01em;">神奈川区・白楽の<br/><span style="color:#3D5AFE;">不動産売却</span>相談。</h1>
           <p style="font-size:16px;line-height:1.9;font-weight:500;color:#24324a;margin-top:28px;margin-bottom:32px;padding:0;">相続した家、住み替え、他社で販売中の物件。<br/>売却時期・販売方法・費用を一緒に整理します。<br/>まだ売ると決めていない段階でもご相談ください。</p>
-          <div style="display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
+          <div id="hero-highlights" style="display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
             <div style="display:flex;align-items:center;gap:8px;"><img alt="" width="169" height="127" decoding="async" src="assets/icon-local.png" style="width:28px;height:28px;object-fit:contain;" /><span style="font-size:13px;font-weight:500;color:#1B2440;">地域密着<br/>六角橋を知り尽くした<br/>不動産のプロ</span></div>
             <div style="display:flex;align-items:center;gap:8px;"><img alt="" width="195" height="127" decoding="async" src="assets/icon-free.png" style="width:28px;height:28px;object-fit:contain;" /><span style="font-size:13px;font-weight:500;color:#1B2440;">相談無料<br/>安心の無料相談で<br/>しっかりサポート</span></div>
             <div style="display:flex;align-items:center;gap:8px;"><img alt="" width="204" height="127" decoding="async" src="assets/icon-staff.png" style="width:28px;height:28px;object-fit:contain;" /><span style="font-size:13px;font-weight:500;color:#1B2440;">経験豊富なスタッフ<br/>豊富な知識と実績で<br/>しっかり査定</span></div>
@@ -194,6 +203,20 @@
 
 
   <!-- VERIFIED SALE CASES -->
+  <section id="inheritance-consultation" aria-labelledby="seller-topics-title" style="max-width:1280px;margin:0 auto;padding:40px 48px;background:#F5F8FC;box-sizing:border-box;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;color:#304BD8;">売却の進め方を、一緒に整理します</div>
+    <h2 id="seller-topics-title" style="font-size:28px;line-height:1.6;margin:12px 0;">売却のお悩み、いま近いものは？</h2>
+    <p style="font-size:15px;line-height:1.9;color:#5B647A;margin:0;">選んだ内容を相談フォームに引き継ぎます。売却を決めていなくても、詳しい住所や資料がそろっていなくてもご相談いただけます。</p>
+    <div class="seller-topic-grid">
+      <a class="seller-topic-card" data-consultation-location="home_topic_inheritance" href="/Contact.dc.html?topic=inheritance"><h3>相続した家をどうするか迷っている</h3><p>貸す場合と売る場合の収益・費用・負担を比較。片付け前や、遠方にお住まいの方もご相談ください。</p><span>相続した家について相談する →</span></a>
+      <a class="seller-topic-card" data-consultation-location="home_topic_sale_review" href="/Contact.dc.html?topic=sale_review"><h3>他社で販売中だが、なかなか売れない</h3><p>売出価格・掲載写真・物件の説明・問い合わせや内覧の反応を確認し、販売方法を一緒に見直します。</p><span>今の販売方法を相談する →</span></a>
+      <a class="seller-topic-card" data-consultation-location="home_topic_relocation" href="/Contact.dc.html?topic=relocation"><h3>売却と、新しい住まい探しを進めたい</h3><p>売却と購入の順番、必要な資金、引き渡しと入居の時期を整理し、住み替えの進め方を考えます。</p><span>売却と住み替えを相談する →</span></a>
+      <a class="seller-topic-card" data-consultation-location="home_topic_comparison" href="/Contact.dc.html?topic=comparison"><h3>買取か、手を入れて売るか迷っている</h3><p>現況・リフォーム後の売却・業者買取を、工事費用や手取りの見込みも含めて比較します。</p><span>売却方法の比較を相談する →</span></a>
+    </div>
+    <p style="font-size:13px;line-height:1.8;color:#5B647A;margin:0 0 16px;">他社で販売中の物件は、媒介契約の種類・期間を確認したうえで、進め方をご案内します。電話番号は任意で、担当者より2営業日以内にご連絡します。</p>
+    <div class="inheritance-actions"><a href="#sale-cases" class="inheritance-secondary">実際の売却事例を見てから考える →</a><a href="/kanagawa-baikyaku.html" class="inheritance-secondary">神奈川区の売却ガイドを見る →</a></div>
+  </section>
+
   <section id="achievement" aria-label="神奈川区の売却事例" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F5F8FC;position:relative;scroll-margin-top:100px;box-sizing:border-box;">
     <div style="font-size:14px;font-weight:700;color:#3D5AFE;margin-bottom:8px;">神奈川区での売却サポート</div>
     <h2 style="font-size:28px;font-weight:900;margin:0 0 12px;">ご自身に近いお悩みから、売却事例を見る</h2>
@@ -232,17 +255,7 @@
   </section>
 
   <!-- INHERITED HOME CONSULTATION -->
-  <section id="inheritance-consultation" style="max-width:1280px;margin:0 auto;padding:40px 48px;background:#F5F8FC;box-sizing:border-box;">
-    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;color:#3D5AFE;">相続した家のご相談</div>
-    <h2 style="font-size:28px;line-height:1.6;margin:12px 0;">相続した家、貸すか売るか。<br/>迷っている段階からご相談ください。</h2>
-    <p style="font-size:15px;line-height:1.9;color:#5B647A;margin:0 0 20px;">神奈川区・白楽・六角橋・大口で、相続した戸建ての活用をお考えの方へ。賃貸と売却それぞれの収益・費用・リスクを整理し、ご希望に合う選択を一緒に考えます。</p>
-    <div class="inheritance-actions">
-      <a data-consultation-location="home_inheritance" href="/Contact.dc.html" class="inheritance-primary">貸すか売るか、無料で相談する →</a>
-      <a href="#sale-cases" class="inheritance-secondary">3つの売却事例を見る →</a>
-      <a href="/kanagawa-baikyaku.html" class="inheritance-secondary">神奈川区の不動産売却ガイドを見る →</a>
-    </div>
-    <p style="font-size:13px;line-height:1.8;color:#5B647A;margin:16px 0 0;">売却を決めていなくても、片付けや修繕を始める前でもご相談いただけます。</p>
-  </section>
+
 
   <!-- SERVICE -->
   <section id="service" style="padding:80px 48px;max-width:1280px;margin:0 auto;text-align:center;background:#FAFBFF;position:relative;">
