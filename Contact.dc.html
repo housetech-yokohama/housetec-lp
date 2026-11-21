@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,7 @@
       p{font-size:14px!important;line-height:1.8!important;}
       form{gap:16px!important;}
       input,select,textarea{font-size:16px!important;padding:13px 14px!important;}
-      label{font-size:12px!important;}
+      label{font-size:14px!important;}
       button[type="submit"]{width:100%!important;font-size:16px!important;padding:16px 20px!important;min-height:48px!important;}
       section a[style*="border-radius:999px"]{display:block!important;width:100%!important;text-align:center!important;box-sizing:border-box!important;font-size:15px!important;padding:16px 20px!important;min-height:44px!important;}
       footer a[style*="border-radius:999px"]{display:inline-block!important;width:auto!important;}
@@ -80,18 +80,14 @@
     </sc-if>
     <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
       <div>
-        <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">CONTACT</div>
+        <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">売却・相続・住み替えのご相談</div>
         <h1 style="font-size:30px;font-weight:900;margin:0 0 12px;">不動産の無料相談</h1>
-        <p style="font-size:15px;color:#5B647A;line-height:1.8;margin:0 0 36px;">売るか迷っている方、相続した家の活用や住み替え、他社で販売中の物件についてもご相談いただけます。</p>
-        <p style="font-size:14px;color:#5B647A;line-height:1.8;">必須はお名前・メールアドレス・ご相談内容の3項目です。担当者より2営業日以内にご連絡いたします。</p><p style="font-size:13px;color:#5B647A;"><a href="/privacy.html" target="_blank" rel="noopener noreferrer">お問い合わせ情報の取り扱い</a>をご確認のうえ送信してください。</p>
+        <p style="font-size:15px;color:#5B647A;line-height:1.8;margin:0 0 36px;">売るか迷っている方、相続した家や他社で販売中の物件もご相談ください。購入など、不動産に関するご相談も承ります。</p>
+        <p style="font-size:14px;color:#5B647A;line-height:1.8;">必須はお名前・メールアドレス・ご相談内容の3項目です。担当者より2営業日以内にご連絡いたします。</p>
         <form id="contact-form" aria-busy="{{ submitting }}" onSubmit="{{ handleSubmit }}" style="display:flex;flex-direction:column;gap:20px;">
           <div>
             <label htmlFor="contact-name" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">お名前 <span style="color:#FF7A59;">必須</span></label>
             <input type="text" id="contact-name" name="name" disabled="{{ submitting }}" autoComplete="name" required="true" value="{{ form.name }}" onChange="{{ onName }}" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;" placeholder="山田 太郎" />
-          </div>
-          <div>
-            <label htmlFor="contact-phone" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">電話番号 <span style="color:#5B647A;font-weight:400;">任意</span></label>
-            <input type="tel" id="contact-phone" name="phone" disabled="{{ submitting }}" autoComplete="tel" aria-describedby="contact-phone-help" value="{{ form.phone }}" onChange="{{ onPhone }}" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;" placeholder="045-000-0000" /><p id="contact-phone-help" style="font-size:13px;line-height:1.8;color:#5B647A;margin:8px 0 0;">お電話での連絡をご希望の場合にご入力ください。空欄でも送信できます。</p>
           </div>
           <div>
             <label htmlFor="contact-email" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">メールアドレス <span style="color:#FF7A59;">必須</span></label>
@@ -99,7 +95,11 @@
           </div>
           <div>
             <label htmlFor="contact-message" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">ご相談内容 <span style="color:#FF7A59;">必須</span></label>
-            <p id="contact-message-help" style="font-size:13px;line-height:1.8;color:#5B647A;margin:0 0 10px;">短い文章で大丈夫です。例：「相続した家を貸すか売るか迷っている」「売却と同時に購入先も探したい」「他社に依頼しているが売れず相談したい」。詳しい住所や物件資料は、分かる範囲でお知らせください。</p><textarea aria-describedby="contact-message-help" id="contact-message" name="message" disabled="{{ submitting }}" required="true" value="{{ form.message }}" onChange="{{ onMessage }}" rows="6" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;resize:vertical;" placeholder="例：相続した家の売却を考えています。何から始めればよいか相談したいです。"></textarea>
+            <p id="contact-message-help" style="font-size:13px;line-height:1.8;color:#5B647A;margin:0 0 10px;">短い文章で大丈夫です。例：「相続した家を貸すか売るか迷っている」「住み替えを相談したい」。所在地は町名までなど、分かる範囲でお知らせください。詳しい住所や物件資料は、送信時には必要ありません。</p><textarea aria-describedby="contact-message-help" id="contact-message" name="message" disabled="{{ submitting }}" required="true" value="{{ form.message }}" onChange="{{ onMessage }}" rows="6" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;resize:vertical;" placeholder="例：相続した家の売却を考えています。何から始めればよいか相談したいです。"></textarea>
+          </div>
+          <div>
+            <label htmlFor="contact-phone" style="font-size:13px;font-weight:700;display:block;margin-bottom:8px;">電話番号 <span style="color:#5B647A;font-weight:400;">任意</span></label>
+            <input type="tel" id="contact-phone" name="phone" disabled="{{ submitting }}" autoComplete="tel" aria-describedby="contact-phone-help" value="{{ form.phone }}" onChange="{{ onPhone }}" style="width:100%;padding:14px 16px;border:1.5px solid #E7EAF3;border-radius:12px;font-size:15px;color:#1B2440;box-sizing:border-box;" placeholder="045-000-0000" /><p id="contact-phone-help" style="font-size:13px;line-height:1.8;color:#5B647A;margin:8px 0 0;">お電話での連絡をご希望の場合にご入力ください。空欄でも送信できます。</p>
           </div>
           <input type="text" name="_gotcha" value="{{ form.honeypot }}" onChange="{{ onHoneypot }}" autoComplete="off" tabIndex="-1" aria-hidden="true" style="display:none;" />
           <sc-if value="{{ submitFailed }}" hint-placeholder-val="{{ false }}">
@@ -109,6 +109,7 @@
               営業時間 10:00〜19:30／定休日 水曜日
             </div>
           </sc-if>
+          <p style="font-size:13px;color:#5B647A;"><a href="/privacy.html" target="_blank" rel="noopener noreferrer">お問い合わせ情報の取り扱い</a>をご確認のうえ送信してください。</p>
           <button type="submit" disabled="{{ submitting }}" style="margin-top:8px;font-size:16px;font-weight:700;color:#fff;background:#3D5AFE;border:none;border-radius:999px;padding:16px 32px;box-shadow:0 12px 24px -8px rgba(61,90,254,0.5);cursor:pointer;">{{ submitLabel }}</button>
         </form>
       </div>
@@ -157,7 +158,7 @@ class Component extends DCLogic {
 
     const f = this.state.form;
     if (!f.name.trim() || !f.message.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) {
-      this.setState({ submitFailed: true, errorMessage: 'お名前・メールアドレス・お問い合わせ内容をご確認ください。' });
+      this.setState({ submitFailed: true, errorMessage: 'お名前・メールアドレス・ご相談内容をご確認ください。' });
       return;
     }
     if (f.honeypot) {
@@ -216,7 +217,7 @@ class Component extends DCLogic {
       submitting: this.state.submitting,
       submitFailed: this.state.submitFailed,
       errorMessage: this.state.errorMessage,
-      submitLabel: this.state.submitting ? '送信中...' : '送信する',
+      submitLabel: this.state.submitting ? '送信中...' : '無料で相談を送信する',
       form: f,
       onName: e => this.set('name', e.target.value),
       onPhone: e => this.set('phone', e.target.value),
