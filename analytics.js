@@ -54,7 +54,7 @@
     if (!started || disabled || typeof window.gtag !== 'function') return;
     try { window.gtag('event', name, params); } catch (_) {}
   }
-  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom']);
+  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare']);
   const consultationForms = { '/Contact.dc.html': 'contact', '/Assessment.dc.html': 'assessment', '/Reservation.dc.html': 'reservation' };
   function trackConsultation(anchor) {
     try {
