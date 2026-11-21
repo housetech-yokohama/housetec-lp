@@ -40,7 +40,7 @@
     .inheritance-secondary{background:#fff;border:1px solid #3D5AFE;color:#3D5AFE;}
     .inheritance-actions a:focus-visible{outline:3px solid #1B2440;outline-offset:4px;}
     @media(max-width:600px){.inheritance-actions{flex-direction:column;}.inheritance-actions a{width:100%;}}
-    .sale-case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
+    .sale-case-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
     .sale-case-card{display:flex;flex-direction:column;min-width:0;padding:28px;background:#fff;border:1px solid #E2E7F2;border-radius:20px;color:#1B2440;box-sizing:border-box;transition:border-color .15s,box-shadow .15s;}
     .sale-case-card:hover{color:#1B2440;border-color:#3D5AFE;box-shadow:0 12px 28px -18px rgba(27,36,64,.3);}
     .sale-case-card:focus-visible{outline:3px solid #3D5AFE;outline-offset:4px;}
@@ -48,7 +48,7 @@
     .sale-case-card h4{font-size:21px;line-height:1.7;margin:12px 0;}
     .sale-case-card p{font-size:14px;line-height:1.9;color:#5B647A;margin:0 0 20px;}
     .sale-case-link{font-size:14px;font-weight:700;color:#3D5AFE;margin-top:auto;min-height:44px;display:flex;align-items:center;}
-    @media(max-width:768px){.sale-case-grid{grid-template-columns:1fr;gap:16px;}.sale-case-card{padding:22px;}.sale-case-card h4{font-size:20px;}}
+    @media(max-width:1000px){.sale-case-grid{grid-template-columns:1fr;gap:16px;}.sale-case-card{padding:22px;}.sale-case-card h4{font-size:20px;}}
     @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
     #voice-row > div:nth-child(1){transform:rotate(-1deg);}
     #voice-row > div:nth-child(3){transform:rotate(1deg);}
@@ -115,8 +115,6 @@
     }
   </style>
   <script src="./image-slot.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
 </helmet>
 <div style="width:100%;background:#FFFFFF;color:#1B2440;overflow:hidden;position:relative;">
 
@@ -192,6 +190,44 @@
     </div>
   </section>
 
+
+  <!-- VERIFIED SALE CASES -->
+  <section id="achievement" aria-label="神奈川区の売却事例" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F5F8FC;position:relative;scroll-margin-top:100px;box-sizing:border-box;">
+    <div style="font-size:14px;font-weight:700;color:#3D5AFE;margin-bottom:8px;">神奈川区での売却サポート</div>
+    <h2 style="font-size:28px;font-weight:900;margin:0 0 12px;">ご自身に近いお悩みから、売却事例を見る</h2>
+    <p style="font-size:16px;line-height:1.9;color:#5B647A;margin:0 0 24px;">相続した家の活用、片付け、買取とリフォーム売却の比較。大口・六角橋・仲手原で、実際に行った対応をご紹介します。</p>
+    <div id="sale-cases" style="scroll-margin-top:100px;position:relative;">
+      <div class="sale-case-grid">
+        <a class="sale-case-card" href="/oguchi-souzoku-jirei.html">
+          <span class="sale-case-area">大口｜相続した戸建て</span>
+          <h4>貸すか、売るか。<br/>収益とリスクを比較して売却へ</h4>
+          <p>賃貸と売却それぞれのシミュレーションを行い、客観的に判断できるようサポート。売り出しから2か月で成約しました。</p>
+          <span class="sale-case-link">大口の売却事例を読む →</span>
+        </a>
+        <a class="sale-case-card" href="/rokkakubashi-souzoku-jirei.html">
+          <span class="sale-case-area">六角橋｜相続した戸建て</span>
+          <h4>築62年の家と残された荷物。<br/>片付け・修繕の提案からサポート</h4>
+          <p>建物の古さや荷物のお悩みに、査定・片付けの手配・修繕の提案で対応。売り出しから2.5か月で成約しました。</p>
+          <span class="sale-case-link">六角橋の売却事例を読む →</span>
+        </a>
+        <a class="sale-case-card" href="/nakatehara-baikyaku-jirei.html">
+          <span class="sale-case-area">仲手原｜築年数の経った住宅</span>
+          <h4>業者買取を提案された家を、<br/>リフォームして売却</h4>
+          <p>ご家族が暮らしやすい住まいに整え、工事を含め約4か月で成約。リフォーム費用を差し引いた手取りは、提示額で買取を選んだ場合より約1,200万円多くなりました。</p>
+          <span class="sale-case-link">仲手原の売却事例を読む →</span>
+        </a>
+      </div>
+      <p style="font-size:12px;line-height:1.8;color:#5B647A;margin:16px 0 0;">※金額・期間は個別の事例であり、物件や条件によって異なります。</p>
+    </div>
+    <div style="margin-top:28px;padding:24px;background:#fff;border-radius:20px;">
+      <h3 style="font-size:21px;line-height:1.6;margin:0 0 12px;">ご自身の物件では、どう進めればよいか。</h3>
+      <p style="font-size:16px;line-height:1.9;color:#5B647A;margin:0 0 20px;">売るか迷っている、遠方に住んでいる、他社で販売中など、今の状況からご相談いただけます。</p>
+      <div class="inheritance-actions">
+        <a data-consultation-location="home_sale_cases" href="/Contact.dc.html" class="inheritance-primary">自分の物件について無料で相談する</a>
+        <a data-consultation-location="home_sale_cases" href="/Assessment.dc.html" class="inheritance-secondary">価格の目安を知りたい方は無料査定</a>
+      </div>
+    </div>
+  </section>
 
   <!-- INHERITED HOME CONSULTATION -->
   <section id="inheritance-consultation" style="max-width:1280px;margin:0 auto;padding:40px 48px;background:#F5F8FC;box-sizing:border-box;">
@@ -318,26 +354,13 @@
       <h2 style="font-size:30px;font-weight:900;margin:0 0 8px;color:#1B2440;">HOUSETEC <span style="color:#7C5CFC;">VALUE UP</span> 売却</h2>
       <p style="font-size:15px;color:#5B647A;margin:0;">AI×リフォームで、売却をプロデュース。</p>
     </div>
-    <div style="background:#fff;border-radius:28px;padding:36px;position:relative;z-index:1;margin-bottom:36px;box-shadow:0 24px 60px -30px rgba(27,36,64,0.25);" id="valueup-card">
-      <div style="display:inline-block;font-size:11px;font-weight:700;color:#7C5CFC;background:#F3F0FF;padding:5px 14px;border-radius:999px;margin:0 auto 20px;display:block;width:max-content;">AIが完成イメージを提案</div>
-      <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;" id="valueup-compare-row">
-        <div style="text-align:center;">
-          <div style="font-size:12px;font-weight:700;color:#5B647A;letter-spacing:0.1em;margin-bottom:8px;">BEFORE</div>
-          <img id="valueup-before" src="assets/valueup-before.png" alt="ビフォー写真" style="width:280px;height:190px;object-fit:cover;border-radius:20px;box-shadow:0 16px 32px -16px rgba(27,36,64,0.3);filter:sepia(0.5) grayscale(0.6) brightness(0.85) contrast(0.9);" />
-          <div style="font-size:12px;color:#5B647A;margin-top:8px;">現況のままでは魅力が伝わりにくい</div>
-        </div>
-        <div style="width:48px;height:48px;border-radius:50%;background:#7C5CFC;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin:0 20px;box-shadow:0 12px 24px -8px rgba(124,92,252,0.5);" id="valueup-arrow">
-          <span style="color:#fff;font-size:20px;font-weight:900;">→</span>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:12px;font-weight:700;color:#7C5CFC;letter-spacing:0.1em;margin-bottom:8px;">AFTER（AI完成イメージ）</div>
-          <img src="assets/living-room.png" style="width:280px;height:190px;object-fit:cover;border-radius:20px;box-shadow:0 16px 32px -16px rgba(124,92,252,0.35);" />
-          <div style="font-size:12px;color:#5B647A;margin-top:8px;">リフォーム後の暮らしを具体的にイメージ</div>
-        </div>
-      </div>
+    <div id="valueup-card" style="background:#fff;border-radius:28px;padding:36px;position:relative;z-index:1;margin-bottom:36px;">
+      <h3 style="font-size:24px;line-height:1.6;margin:0 0 16px;">「リフォームしてから売るべき？」工事を決める前に比較します。</h3>
+      <p style="font-size:16px;line-height:1.9;color:#5B647A;margin:0 0 16px;">現況のまま売る場合と、手を入れて売る場合。購入を検討する方の暮らしを想定し、必要な工事・費用・販売方法を一緒に整理します。</p>
+      <a href="/nakatehara-baikyaku-jirei.html" style="display:inline-flex;align-items:center;min-height:44px;font-size:16px;font-weight:700;">買取とリフォーム後の売却を比較した仲手原の事例を読む</a>
     </div>
     <div style="text-align:center;margin-bottom:28px;position:relative;z-index:1;">
-      <a href="ValueUp.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#7C5CFC;border-radius:999px;padding:12px 28px;">サービス詳細を見る →</a>
+      <a href="/ValueUp.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#7C5CFC;border-radius:999px;padding:12px 28px;">費用と売却方法の比較について見る</a>
     </div>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
       <sc-for list="{{ valueupChips }}" as="chip" hint-placeholder-count="4">
@@ -345,88 +368,6 @@
       </sc-for>
     </div>
   </section>
-
-  <!-- ACHIEVEMENT -->
-  <section id="achievement" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F5F8FC;position:relative;">
-    <div style="position:absolute;bottom:-50px;right:10%;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,#7C5CFC 0%,transparent 70%);opacity:0.07;pointer-events:none;z-index:0;"></div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
-      <div>
-        <div style="font-size:13px;font-weight:700;color:#3D5AFE;letter-spacing:0.1em;margin-bottom:8px;">ACHIEVEMENT</div>
-        <h2 style="font-size:28px;font-weight:900;margin:0;">六角橋エリアの実績</h2>
-      </div>
-      <a href="#sale-cases" style="font-size:14px;font-weight:700;display:inline-flex;align-items:center;min-height:44px;">売却事例を見る →</a>
-    </div>
-    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:stretch;">
-      <div style="flex:2 1 480px;display:flex;gap:16px;flex-wrap:wrap;">
-        <div style="flex:1 1 140px;background:#F2F6FF;border-radius:20px;padding:24px 16px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);position:relative;overflow:hidden;margin-top:0;">
-          <div style="position:absolute;top:-20px;right:-20px;width:60px;height:60px;border-radius:50%;background:#3D5AFE;opacity:0.08;"></div>
-          <div style="font-size:12px;font-weight:700;color:#5B647A;margin-bottom:8px;position:relative;">無料査定ご依頼件数</div>
-          <div style="display:grid;">
-            <div style="grid-area:1/1;font-size:44px;font-weight:900;color:#3D5AFE;opacity:0.07;line-height:1;align-self:center;justify-self:center;">1250</div>
-            <div style="grid-area:1/1;font-size:32px;font-weight:900;color:#3D5AFE;line-height:1;align-self:center;">1,250<span style="font-size:13px;font-weight:700;">件以上</span></div>
-          </div>
-          <div style="font-size:11px;color:#5B647A;margin-top:6px;position:relative;">※2023年度実績</div>
-        </div>
-        <div style="flex:1 1 140px;background:#F0FAF6;border-radius:20px;padding:24px 16px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);position:relative;overflow:hidden;margin-top:16px;">
-          <div style="position:absolute;top:-20px;right:-20px;width:60px;height:60px;border-radius:50%;background:#1FAE7A;opacity:0.08;"></div>
-          <div style="font-size:12px;font-weight:700;color:#5B647A;margin-bottom:8px;position:relative;">売却成約件数</div>
-          <div style="display:grid;">
-            <div style="grid-area:1/1;font-size:44px;font-weight:900;color:#1FAE7A;opacity:0.07;line-height:1;align-self:center;justify-self:center;">420</div>
-            <div style="grid-area:1/1;font-size:32px;font-weight:900;color:#1FAE7A;line-height:1;align-self:center;">420<span style="font-size:13px;font-weight:700;">件以上</span></div>
-          </div>
-          <div style="font-size:11px;color:#5B647A;margin-top:6px;position:relative;">※2023年度実績</div>
-        </div>
-        <div style="flex:1 1 140px;background:#F5F1FF;border-radius:20px;padding:24px 16px;text-align:center;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);position:relative;overflow:hidden;margin-top:0;">
-          <div style="position:absolute;top:-20px;right:-20px;width:60px;height:60px;border-radius:50%;background:#7C5CFC;opacity:0.08;"></div>
-          <div style="font-size:12px;font-weight:700;color:#5B647A;margin-bottom:8px;position:relative;">お客様紹介件数</div>
-          <div style="display:grid;">
-            <div style="grid-area:1/1;font-size:44px;font-weight:900;color:#7C5CFC;opacity:0.07;line-height:1;align-self:center;justify-self:center;">963</div>
-            <div style="grid-area:1/1;font-size:32px;font-weight:900;color:#7C5CFC;line-height:1;align-self:center;">963<span style="font-size:13px;font-weight:700;">件以上</span></div>
-          </div>
-          <div style="font-size:11px;color:#5B647A;margin-top:6px;position:relative;">※当社紹介実績</div>
-        </div>
-      </div>
-      <div style="flex:1 1 280px;">
-        <div ref="{{ mapRef }}" style="width:100%;height:280px;border-radius:20px;overflow:hidden;box-shadow:0 16px 40px -22px rgba(27,36,64,0.2);"></div>
-        <div style="font-size:12px;color:#5B647A;text-align:center;margin-top:8px;">六角橋エリアの査定実績をご覧いただけます。</div>
-      </div>
-    </div>
-    <div id="sale-cases" style="margin-top:40px;scroll-margin-top:100px;position:relative;">
-      <h3 style="font-size:24px;line-height:1.6;margin:0 0 12px;">神奈川区の不動産売却事例</h3>
-      <p style="font-size:15px;line-height:1.9;color:#5B647A;margin:0 0 24px;">相続した家の活用、片付け、買取とリフォーム売却の比較。大口・六角橋・仲手原での対応をご紹介します。</p>
-      <div class="sale-case-grid">
-        <a class="sale-case-card" href="/oguchi-souzoku-jirei.html">
-          <span class="sale-case-area">大口｜相続した戸建て</span>
-          <h4>貸すか、売るか。<br/>収益とリスクを比較して売却へ</h4>
-          <p>賃貸と売却それぞれのシミュレーションを行い、客観的に判断できるようサポート。売り出しから2か月で成約しました。</p>
-          <span class="sale-case-link">大口の売却事例を読む →</span>
-        </a>
-        <a class="sale-case-card" href="/rokkakubashi-souzoku-jirei.html">
-          <span class="sale-case-area">六角橋｜相続した戸建て</span>
-          <h4>築62年の家と残された荷物。<br/>片付け・修繕の提案からサポート</h4>
-          <p>建物の古さや荷物のお悩みに、査定・片付けの手配・修繕の提案で対応。売り出しから2.5か月で成約しました。</p>
-          <span class="sale-case-link">六角橋の売却事例を読む →</span>
-        </a>
-        <a class="sale-case-card" href="/nakatehara-baikyaku-jirei.html">
-          <span class="sale-case-area">仲手原｜築年数の経った住宅</span>
-          <h4>業者買取を提案された家を、<br/>リフォームして売却</h4>
-          <p>ご家族が暮らしやすい住まいに整え、工事を含め約4か月で成約。リフォーム費用を差し引いた手取りは、提示額で買取を選んだ場合より約1,200万円多くなりました。</p>
-          <span class="sale-case-link">仲手原の売却事例を読む →</span>
-        </a>
-      </div>
-      <p style="font-size:12px;line-height:1.8;color:#5B647A;margin:16px 0 0;">※金額・期間は個別の事例であり、物件や条件によって異なります。</p>
-    </div>
-  </section>
-
-  <div style="max-width:1280px;margin:0 auto;padding:0 48px 48px;">
-    <div style="background:#F5F7FC;border-radius:20px;padding:28px 32px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;">
-      <div style="font-size:14px;font-weight:700;color:#1B2440;">実績を踏まえて、まずは無料査定から</div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-        <a href="Assessment.dc.html" style="font-size:14px;font-weight:700;color:#fff;background:#3D5AFE;border-radius:999px;padding:12px 24px;">無料査定を依頼する →</a>
-        <a href="https://lin.ee/XPO76ZV" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ" style="font-size:14px;font-weight:700;color:#fff;background:#06C755;border-radius:999px;padding:12px 24px;">LINEで相談する →</a>
-      </div>
-    </div>
-  </div>
 
   <!-- VOICE -->
   <section id="voice" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#FAF8FC;">
@@ -544,7 +485,6 @@ const GOOGLE_MAPS_PLACE_URL = 'https://www.google.com/maps/search/?api=1&query='
 const GOOGLE_MAPS_REVIEW_URL = "https://www.google.com/maps/place/有限会社ハウステック+白楽本社/@35.4887882,139.6256647,17z/data=!3m1!5s0x60185ea3911ebb83:0xe68436a87f227ae3!4m8!3m7!1s0x60185ea3911f023d:0x7c38fd13e32c5b87!8m2!3d35.4887882!4d139.6256647!9m1!1b1!16s%2Fg%2F11cs5mn9yp";
 
 class Component extends DCLogic {
-  mapRef = React.createRef();
   menuToggleRef = React.createRef();
   menuCloseRef = React.createRef();
   state = { menuOpen: false };
@@ -556,18 +496,9 @@ class Component extends DCLogic {
     if (this.menuToggleRef.current) this.menuToggleRef.current.focus();
   });
   onMenuKeyDown = e => { if (e.key === 'Escape') { e.preventDefault(); this.closeMenu(); } };
-  componentDidMount() {
-    if (window.L && this.mapRef.current && !this._map) {
-      const center = [35.4877, 139.6203];
-      this._map = L.map(this.mapRef.current, { zoomControl: false, attributionControl: true }).setView(center, 15);
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(this._map);
-      setTimeout(() => this._map && this._map.invalidateSize(), 200);
-    }
-  }
   renderVals() {
     const menuOpen = this.state.menuOpen;
     return {
-      mapRef: this.mapRef,
       menuToggleRef: this.menuToggleRef,
       menuCloseRef: this.menuCloseRef,
       menuOpen: menuOpen,
@@ -584,7 +515,7 @@ class Component extends DCLogic {
         { photoSrc:'assets/documents.png', iconSrc:'assets/svc-consult.png', name:'相続対策・相談', desc:'相続不動産のご相談から最適な活用方法をご提案', badge:null, tint:'#FFF6F0', accent:'#FF7A59' },
         { photoSrc:'assets/house-exterior.png', iconSrc:'assets/svc-valueup.png', name:'VALUE UP売却', desc:'AI×リフォームで、売却をプロデュース', badge:'NEW', tint:'#FFF0F5', accent:'#FF5C93' },
       ],
-      valueupChips: ['リフォーム費用の先払い不要','売れ残りリスクなし','売却期間の短縮','手取り額UPの可能性'],
+      valueupChips: ['現況とリフォーム後を比較','工事費用を含めて検討','購入者の暮らしを想定','販売方法を一緒に整理'],
       flowSteps: [
         { num:'01', title:'ご相談・査定依頼', desc:'お気軽にご相談ください', iconSrc:'', hasIcon:false, noIcon:true, hasArrow:true },
         { num:'02', title:'現地調査・価格査定', desc:'現地調査の上、適正価格をご提案', iconSrc:'assets/flow-survey.png', hasIcon:false, noIcon:true, hasArrow:true },
