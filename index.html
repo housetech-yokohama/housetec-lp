@@ -60,7 +60,7 @@
     .seller-topic-card span{font-size:14px;font-weight:700;color:#304BD8;margin-top:auto;min-height:44px;display:flex;align-items:center;}
     .seller-topic-card:hover{color:#1B2440;border-color:#3D5AFE;box-shadow:0 10px 24px -18px rgba(27,36,64,.3);}
     .seller-topic-card:focus-visible{outline:3px solid #1B2440;outline-offset:4px;}
-    @media(max-width:600px){.seller-topic-grid{grid-template-columns:1fr;}.seller-topic-card{padding:20px;}#hero-highlights{display:none!important;}}
+    @media(max-width:600px){.seller-topic-grid{grid-template-columns:1fr;}.seller-topic-card{padding:20px;}#hero-highlights{display:none!important;}#seller-hero{padding-bottom:20px!important;}#seller-hero-frame{min-height:0!important;}#seller-hero-copy{padding:100px 20px 24px!important;box-sizing:border-box;}}
     @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
     #voice-row > div:nth-child(1){transform:rotate(-1deg);}
     #voice-row > div:nth-child(3){transform:rotate(1deg);}
@@ -176,12 +176,12 @@
   </div>
 
   <!-- HERO -->
-  <section style="position:relative;padding:0 0 100px;overflow:visible;">
-    <div style="position:relative;left:50%;margin-left:-50vw;width:100vw;min-height:620px;display:flex;align-items:center;">
+  <section id="seller-hero" style="position:relative;padding:0 0 100px;overflow:visible;">
+    <div id="seller-hero-frame" style="position:relative;left:50%;margin-left:-50vw;width:100vw;min-height:620px;display:flex;align-items:center;">
       <div id="hero-arcade" style="position:absolute;inset:0;width:100%;height:100%;background-image:url('./assets/hero-arcade.webp');background-size:cover;background-position:center;clip-path:polygon(0% 0%,100% 0%,100% 85%,95% 80.95%,90% 80.24%,85% 83.46%,80% 87.94%,75% 90%,70% 87.94%,65% 83.46%,60% 80.24%,55% 80.95%,50% 85%,45% 89.05%,40% 89.76%,35% 86.54%,30% 82.06%,25% 80%,20% 82.06%,15% 86.54%,10% 89.76%,5% 89.05%,0% 85%);"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,35,60,0.08) 65%, rgba(20,35,60,0.16) 100%);"></div>
       <img alt="" width="209" height="177" decoding="async" src="assets/consultation.png" style="position:absolute;bottom:64px;right:80px;width:220px;height:150px;object-fit:cover;border-radius:24px;border:6px solid #fff;box-shadow:0 20px 40px -12px rgba(27,36,64,0.3);z-index:3;transform:rotate(-2.5deg);" />
-      <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 48px;width:100%;">
+      <div id="seller-hero-copy" style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:72px 48px;width:100%;">
         <div style="max-width:600px;background:rgba(255,255,255,0.28);border:1px solid rgba(255,255,255,0.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:28px;padding:32px 24px;box-shadow:0 20px 50px -26px rgba(27,36,64,0.22);" id="hero-glass">
           <div style="display:inline-block;font-size:13px;font-weight:700;color:#3D5AFE;background:#EDF0FF;padding:6px 16px;border-radius:999px;margin-bottom:20px;">神奈川区・六角橋エリアに根ざして25年</div>
           <h1 style="font-size:44px;line-height:1.4;font-weight:900;margin:0 0 24px;letter-spacing:-0.01em;">神奈川区・白楽の<br/><span style="color:#3D5AFE;">不動産売却</span>相談。</h1>
