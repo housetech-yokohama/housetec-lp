@@ -4,7 +4,7 @@
   if (window.housetecAnalytics) return;
   const ID = 'G-3BNE4X3FEK';
   const KEY = 'housetec.analytics.disabled';
-  const pages = new Set(['/', '/index.html', '/ValueUp.dc.html', '/Assessment.dc.html', '/Contact.dc.html', '/Reservation.dc.html', '/kanagawa-baikyaku.html', '/hakuraku-baikyaku.html', '/rokkakubashi-baikyaku.html', '/privacy.html', '/rokkakubashi-souzoku-jirei.html', '/oguchi-souzoku-jirei.html', '/nakatehara-baikyaku-jirei.html']);
+  const pages = new Set(['/', '/index.html', '/ValueUp.dc.html', '/Assessment.dc.html', '/Contact.dc.html', '/Reservation.dc.html', '/kanagawa-baikyaku.html', '/hakuraku-baikyaku.html', '/rokkakubashi-baikyaku.html', '/privacy.html', '/rokkakubashi-souzoku-jirei.html', '/oguchi-souzoku-jirei.html', '/nakatehara-baikyaku-jirei.html', '/souzoku-baikyaku.html']);
   const isProduction = window.location.hostname === 'housetec-lp.vercel.app';
   let disabled = false;
   try { disabled = window.localStorage.getItem(KEY) === '1'; } catch (_) {}
@@ -54,7 +54,7 @@
     if (!started || disabled || typeof window.gtag !== 'function') return;
     try { window.gtag('event', name, params); } catch (_) {}
   }
-  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare', 'home_topic_inheritance', 'home_topic_sale_review', 'home_topic_relocation', 'home_topic_comparison', 'kanagawa_sale_review']);
+  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare', 'home_topic_inheritance', 'home_topic_sale_review', 'home_topic_relocation', 'home_topic_comparison', 'kanagawa_sale_review', 'souzoku_guide']);
   const consultationTopics = new Set(['inheritance', 'relocation', 'sale_review', 'comparison']);
   const consultationForms = { '/Contact.dc.html': 'contact', '/Assessment.dc.html': 'assessment', '/Reservation.dc.html': 'reservation' };
   function trackConsultation(anchor) {
