@@ -25,14 +25,21 @@
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     window.gtag('js', new Date());
-    // Recognize only our fixed public Business Profile link. Never forward query input.
+    // Match complete public campaign combinations; never forward query input.
     let campaign = {};
     try {
       const url = new URL(window.location.href);
-      const expected = { utm_source: 'google', utm_medium: 'organic', utm_campaign: 'gbp_profile' };
-      if (Object.entries(expected).every(([key, value]) =>
-        url.searchParams.getAll(key).length === 1 && url.searchParams.get(key) === value)) {
-        campaign = { campaign_source: 'google', campaign_medium: 'organic', campaign_name: 'gbp_profile' };
+      const campaigns = [
+        { source: 'google', medium: 'organic', name: 'gbp_profile' },
+        { source: 'google', medium: 'organic', name: 'souzoku_guide_post', path: '/souzoku-baikyaku.html' },
+        { source: 'instagram', medium: 'social', name: 'souzoku_guide_story', path: '/souzoku-baikyaku.html' }
+      ];
+      const approved = campaigns.find(item =>
+        (!item.path || item.path === window.location.pathname) &&
+        Object.entries({ utm_source: item.source, utm_medium: item.medium, utm_campaign: item.name }).every(([key, value]) =>
+          url.searchParams.getAll(key).length === 1 && url.searchParams.get(key) === value));
+      if (approved) {
+        campaign = { campaign_source: approved.source, campaign_medium: approved.medium, campaign_name: approved.name };
       }
     } catch (_) {}
     const pageLocation = window.location.origin + window.location.pathname;
