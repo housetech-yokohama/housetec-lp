@@ -30,7 +30,7 @@ test('blocked browser storage does not crash the site',()=>{const s=setup({block
 test('only fixed form types are accepted and repeated confirmation is deduplicated',()=>{const s=setup();for(const type of ['assessment','contact','reservation']){s.window.housetecAnalytics.trackLead(type);s.window.housetecAnalytics.trackLead(type);}s.window.housetecAnalytics.trackLead('person@example.com');const events=s.commands().filter(v=>v[0]==='event');assert.equal(events.length,3);assert.equal(events[0][1],'generate_lead');assert.deepEqual(Object.keys(events[0][2]),['form_type']);});
 test('phone and official LINE clicks send only the contact method',()=>{const s=setup();for(const href of ['tel:0454303383','https://lin.ee/XPO76ZV','https://lin.ee/other','https://example.com/?email=private@example.com'])s.handlers.click({composedPath:()=>[anchor(href)]});const events=s.commands().filter(v=>v[0]==='event');assert.equal(events.length,2);assert.equal(events[0][2].contact_method,'phone');assert.equal(events[1][2].contact_method,'line');assert.ok(!JSON.stringify(events).includes('0454303383'));assert.ok(!JSON.stringify(events).includes('example.com'));});
 test('all public pages include one shared integration and a disclosure link',()=>{
-  for(const file of ['index.html','ValueUp.dc.html','Assessment.dc.html','Contact.dc.html','Reservation.dc.html','kanagawa-baikyaku.html','hakuraku-baikyaku.html','rokkakubashi-baikyaku.html','privacy.html']){
+  for(const file of ['index.html','ValueUp.dc.html','Assessment.dc.html','Contact.dc.html','Reservation.dc.html','kanagawa-baikyaku.html','hakuraku-baikyaku.html','rokkakubashi-baikyaku.html','souzoku-baikyaku.html','privacy.html']){
     const html=fs.readFileSync(path.join(__dirname,'..',file),'utf8');assert.equal((html.match(/src="\/analytics.js"/g)||[]).length,1,file);assert.match(html,/href="\/privacy.html"|アクセス解析を停止する/,file);
   }
 });
@@ -73,4 +73,23 @@ test('existing consultation links still work and previews do not emit topic clic
   const preview=setup({host:'housetec-lp-git-preview.vercel.app'});
   preview.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=sale_review')]});
   assert.equal(preview.commands().length,0);
+});
+
+test('inheritance guide is a fixed public page and consultation clicks stay distinct from leads',()=>{
+  const s=setup({pathname:'/souzoku-baikyaku.html'});
+  const config=s.commands().find(v=>v[0]==='config');
+  assert.equal(config[2].page_location,'https://housetec-lp.vercel.app/souzoku-baikyaku.html');
+  s.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=inheritance','souzoku_guide')]});
+  const events=s.commands().filter(v=>v[0]==='event');
+  assert.equal(events.length,1);
+  assert.equal(events[0][1],'consultation_click');
+  assert.deepEqual(Object.keys(events[0][2]).sort(),['cta_location','form_type','transport_type']);
+  assert.equal(events[0][2].cta_location,'souzoku_guide');
+  assert.ok(!JSON.stringify(events).includes('inheritance'));
+  assert.ok(!events.some(v=>v[1]==='generate_lead'));
+  for(const options of [{host:'housetec-lp-preview.vercel.app'}, {off:true}]){
+    const blocked=setup({...options,pathname:'/souzoku-baikyaku.html'});
+    blocked.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=inheritance','souzoku_guide')]});
+    assert.equal(blocked.commands().length,0);
+  }
 });
