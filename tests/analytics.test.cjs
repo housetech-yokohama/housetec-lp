@@ -4,10 +4,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const code = fs.readFileSync(path.join(__dirname, '..', 'analytics.js'), 'utf8');
-function setup({host='housetec-lp.vercel.app',pathname='/Assessment.dc.html',off=false,blocked=false}={}) {
+function setup({host='housetec-lp.vercel.app',pathname='/Assessment.dc.html',off=false,blocked=false,search='?email=secret@example.com',hash='#private'}={}) {
   const scripts=[], handlers={}, status={textContent:''}, saved=new Map(off?[['housetec.analytics.disabled','1']]:[]);
   const origin='https://'+host;
-  const window={location:{hostname:host,origin,pathname,href:origin+pathname+'?email=secret@example.com#private'},localStorage:{getItem:k=>{if(blocked)throw Error();return saved.get(k)||null;},setItem:(k,v)=>{if(blocked)throw Error();saved.set(k,v);}}};
+  const window={location:{hostname:host,origin,pathname,href:origin+pathname+search+hash},localStorage:{getItem:k=>{if(blocked)throw Error();return saved.get(k)||null;},setItem:(k,v)=>{if(blocked)throw Error();saved.set(k,v);}}};
   const document={referrer:'https://www.google.com/search?q=private@example.com',head:{appendChild:s=>scripts.push(s)},createElement:()=>({}),getElementById:()=>status,addEventListener:(name,fn)=>handlers[name]=fn};
   const ctx=vm.createContext({window,document,URL,Set});vm.runInContext(code,ctx);
   return {window,document,scripts,handlers,status,saved,ctx,commands:()=>Array.from(window.dataLayer||[],v=>Array.from(v))};
@@ -91,5 +91,57 @@ test('inheritance guide is a fixed public page and consultation clicks stay dist
     const blocked=setup({...options,pathname:'/souzoku-baikyaku.html'});
     blocked.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=inheritance','souzoku_guide')]});
     assert.equal(blocked.commands().length,0);
+  }
+});
+
+const distributionCampaigns = [
+  ['google','organic','souzoku_guide_post'],
+  ['instagram','social','souzoku_guide_story']
+];
+for (const [source,medium,name] of distributionCampaigns) {
+  test(name+': only the approved constants are passed while raw queries and referrers stay private',()=>{
+    const s=setup({pathname:'/souzoku-baikyaku.html',search:'?utm_source='+source+'&utm_medium='+medium+'&utm_campaign='+name+'&fbclid=private-token&email=hidden@example.com',hash:'#hidden@example.com'});
+    const config=s.commands().find(v=>v[0]==='config')[2];
+    assert.equal(config.campaign_source,source);assert.equal(config.campaign_medium,medium);assert.equal(config.campaign_name,name);
+    assert.equal(config.page_location,'https://housetec-lp.vercel.app/souzoku-baikyaku.html');
+    assert.equal(config.page_referrer,'https://www.google.com/');
+    const serialized=JSON.stringify(s.commands());
+    for(const value of ['hidden@example.com','private-token','utm_source=','fbclid=','private@'])assert.ok(!serialized.includes(value),value);
+    s.handlers.click({composedPath:()=>[consultationAnchor('/Contact.dc.html?topic=inheritance','souzoku_guide')]});
+    assert.ok(s.commands().some(v=>v[0]==='event'&&v[1]==='consultation_click'));
+    assert.ok(!s.commands().some(v=>v[0]==='event'&&v[1]==='generate_lead'));
+  });
+  test(name+': restricted to the guide and suppressed on previews or opt-out',()=>{
+    const query='?utm_source='+source+'&utm_medium='+medium+'&utm_campaign='+name;
+    const wrong=setup({pathname:'/Contact.dc.html',search:query});
+    assert.equal(wrong.commands().find(v=>v[0]==='config')[2].campaign_name,undefined);
+    for(const options of [{host:'housetec-lp-preview.vercel.app'},{off:true}]){
+      const s=setup({...options,pathname:'/souzoku-baikyaku.html',search:query});assert.equal(s.commands().length,0);assert.equal(s.scripts.length,0);
+    }
+  });
+}
+test('distribution matching rejects unknown, incomplete, mixed and duplicate campaign input',()=>{
+  const invalid=[
+    'utm_source=google&utm_medium=social&utm_campaign=souzoku_guide_post',
+    'utm_source=instagram&utm_medium=organic&utm_campaign=souzoku_guide_story',
+    'utm_source=google&utm_medium=organic&utm_campaign=unknown',
+    'utm_source=google&utm_medium=organic',
+    'utm_medium=organic&utm_campaign=souzoku_guide_post',
+    'utm_source=google&utm_campaign=souzoku_guide_post',
+    'utm_source=hidden@example.com&utm_medium=organic&utm_campaign=souzoku_guide_post',
+    'utm_source=google&utm_source=google&utm_medium=organic&utm_campaign=souzoku_guide_post',
+    'utm_source=google&utm_medium=organic&utm_medium=organic&utm_campaign=souzoku_guide_post',
+    'utm_source=google&utm_medium=organic&utm_campaign=souzoku_guide_post&utm_campaign=souzoku_guide_post'
+  ];
+  for(const query of invalid){
+    const s=setup({pathname:'/souzoku-baikyaku.html',search:'?'+query});
+    assert.equal(s.commands().find(v=>v[0]==='config')[2].campaign_name,undefined,query);
+    assert.ok(!JSON.stringify(s.commands()).includes('hidden@example.com'));
+  }
+});
+test('existing Business Profile attribution stays available on public pages',()=>{
+  for(const pathname of ['/','/kanagawa-baikyaku.html']){
+    const s=setup({pathname,search:'?utm_source=google&utm_medium=organic&utm_campaign=gbp_profile'});
+    const config=s.commands().find(v=>v[0]==='config')[2];assert.equal(config.campaign_name,'gbp_profile');assert.equal(config.campaign_source,'google');assert.equal(config.campaign_medium,'organic');
   }
 });
