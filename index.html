@@ -15,10 +15,50 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "有限会社ハウステック",
-  "alternateName": "ハウステック",
-  "url": "https://housetec-lp.vercel.app/"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://housetec-lp.vercel.app/#website",
+      "name": "有限会社ハウステック",
+      "alternateName": "ハウステック",
+      "url": "https://housetec-lp.vercel.app/",
+      "inLanguage": "ja",
+      "publisher": {
+        "@id": "https://housetec-lp.vercel.app/#business"
+      }
+    },
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://housetec-lp.vercel.app/#business",
+      "name": "有限会社ハウステック",
+      "alternateName": "ハウステック",
+      "url": "https://housetec-lp.vercel.app/",
+      "telephone": "+81-45-430-3383",
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "221-0802",
+        "addressRegion": "神奈川県",
+        "addressLocality": "横浜市神奈川区",
+        "streetAddress": "六角橋1丁目19-1",
+        "addressCountry": "JP"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "19:30"
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -214,7 +254,7 @@
       <a class="seller-topic-card" data-consultation-location="home_topic_comparison" href="/Contact.dc.html?topic=comparison"><h3>買取か、手を入れて売るか迷っている</h3><p>現況・リフォーム後の売却・業者買取を、工事費用や手取りの見込みも含めて比較します。</p><span>売却方法の比較を相談する →</span></a>
     </div>
     <p style="font-size:13px;line-height:1.8;color:#5B647A;margin:0 0 16px;">他社で販売中の物件は、媒介契約の種類・期間を確認したうえで、進め方をご案内します。電話番号は任意で、担当者より2営業日以内にご連絡します。</p>
-    <div class="inheritance-actions"><a href="#sale-cases" class="inheritance-secondary">実際の売却事例を見てから考える →</a><a href="/kanagawa-baikyaku.html" class="inheritance-secondary">神奈川区の売却ガイドを見る →</a><a href="/souzoku-baikyaku.html" class="inheritance-secondary">相続した家の売却・遠方からの進め方を読む →</a></div>
+    <div class="inheritance-actions"><a href="#sale-cases" class="inheritance-secondary">実際の売却事例を見てから考える →</a><a href="/kanagawa-baikyaku.html" class="inheritance-secondary">売却の流れ・費用・手取りを見る →</a><a href="/souzoku-baikyaku.html" class="inheritance-secondary">相続した家の売却・遠方からの進め方を読む →</a></div>
   </section>
 
   <section id="achievement" aria-label="神奈川区と周辺の売却事例" style="padding:64px 48px;max-width:1280px;margin:0 auto;background:#F5F8FC;position:relative;scroll-margin-top:100px;box-sizing:border-box;">
