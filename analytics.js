@@ -61,7 +61,7 @@
     if (!started || disabled || typeof window.gtag !== 'function') return;
     try { window.gtag('event', name, params); } catch (_) {}
   }
-  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare', 'home_topic_inheritance', 'home_topic_sale_review', 'home_topic_relocation', 'home_topic_comparison', 'kanagawa_sale_review', 'souzoku_guide']);
+  const consultationLocations = new Set(['home_inheritance', 'kanagawa_compare', 'tamura_profile', 'seller_faq', 'oguchi_case', 'oguchi_voice', 'rokkakubashi_case', 'nakatehara_case', 'home_sale_hero', 'home_sale_mobile', 'kanagawa_hero', 'kanagawa_cases', 'home_sale_menu', 'home_sale_bottom', 'home_sale_cases', 'valueup_hero', 'valueup_compare', 'home_topic_inheritance', 'home_topic_sale_review', 'home_topic_relocation', 'home_topic_comparison', 'kanagawa_sale_review', 'souzoku_guide', 'kanagawa_relocation', 'hakuraku_relocation']);
   const consultationTopics = new Set(['inheritance', 'relocation', 'sale_review', 'comparison']);
   const consultationForms = { '/Contact.dc.html': 'contact', '/Assessment.dc.html': 'assessment', '/Reservation.dc.html': 'reservation' };
   function trackConsultation(anchor) {
