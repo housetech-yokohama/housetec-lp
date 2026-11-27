@@ -32,6 +32,7 @@
       const campaigns = [
         { source: 'google', medium: 'organic', name: 'gbp_profile' },
         { source: 'google', medium: 'organic', name: 'souzoku_guide_post', path: '/souzoku-baikyaku.html' },
+        { source: 'google', medium: 'organic', name: 'kanagawa_market_post', path: '/kanagawa-baikyaku.html' },
         { source: 'instagram', medium: 'social', name: 'souzoku_guide_story', path: '/souzoku-baikyaku.html' }
       ];
       const approved = campaigns.find(item =>
