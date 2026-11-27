@@ -95,15 +95,16 @@ test('inheritance guide is a fixed public page and consultation clicks stay dist
 });
 
 const distributionCampaigns = [
-  ['google','organic','souzoku_guide_post'],
-  ['instagram','social','souzoku_guide_story']
+  ['google','organic','souzoku_guide_post','/souzoku-baikyaku.html'],
+  ['instagram','social','souzoku_guide_story','/souzoku-baikyaku.html'],
+  ['google','organic','kanagawa_market_post','/kanagawa-baikyaku.html']
 ];
-for (const [source,medium,name] of distributionCampaigns) {
+for (const [source,medium,name,pathname] of distributionCampaigns) {
   test(name+': only the approved constants are passed while raw queries and referrers stay private',()=>{
-    const s=setup({pathname:'/souzoku-baikyaku.html',search:'?utm_source='+source+'&utm_medium='+medium+'&utm_campaign='+name+'&fbclid=private-token&email=hidden@example.com',hash:'#hidden@example.com'});
+    const s=setup({pathname,search:'?utm_source='+source+'&utm_medium='+medium+'&utm_campaign='+name+'&fbclid=private-token&email=hidden@example.com',hash:'#hidden@example.com'});
     const config=s.commands().find(v=>v[0]==='config')[2];
     assert.equal(config.campaign_source,source);assert.equal(config.campaign_medium,medium);assert.equal(config.campaign_name,name);
-    assert.equal(config.page_location,'https://housetec-lp.vercel.app/souzoku-baikyaku.html');
+    assert.equal(config.page_location,'https://housetec-lp.vercel.app'+pathname);
     assert.equal(config.page_referrer,'https://www.google.com/');
     const serialized=JSON.stringify(s.commands());
     for(const value of ['hidden@example.com','private-token','utm_source=','fbclid=','private@'])assert.ok(!serialized.includes(value),value);
@@ -116,7 +117,7 @@ for (const [source,medium,name] of distributionCampaigns) {
     const wrong=setup({pathname:'/Contact.dc.html',search:query});
     assert.equal(wrong.commands().find(v=>v[0]==='config')[2].campaign_name,undefined);
     for(const options of [{host:'housetec-lp-preview.vercel.app'},{off:true}]){
-      const s=setup({...options,pathname:'/souzoku-baikyaku.html',search:query});assert.equal(s.commands().length,0);assert.equal(s.scripts.length,0);
+      const s=setup({...options,pathname,search:query});assert.equal(s.commands().length,0);assert.equal(s.scripts.length,0);
     }
   });
 }
